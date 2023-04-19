@@ -147,3 +147,5 @@ TEAMS = [
   "",
   "",
 ];
+
+module.exports = { TEAMS, LEAGUES };
