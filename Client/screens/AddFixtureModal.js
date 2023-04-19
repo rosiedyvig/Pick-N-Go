@@ -1,19 +1,21 @@
 import React, { useState, useCallback } from "react";
 import {
   SafeAreaView,
+  View,
+  ScrollView,
   Text,
   TextInput,
   Button,
   StyleSheet,
   Alert,
   Pressable,
+  KeyboardAvoidingView,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-//import { TEAMS, LEAGUES } from "../..db.js";
 
 const AddFixtureModal = ({ navigation }) => {
   const [name, setName] = useState(null);
-  const [leauge, setLeauge] = useState("");
+  const [league, setLeague] = useState("");
   const [date, setDate] = useState("");
   const [kick_off, setKickOff] = useState("");
   const [meet_up, setMeetUp] = useState("");
@@ -29,7 +31,7 @@ const AddFixtureModal = ({ navigation }) => {
 
     const newMatch = {
       name,
-      leauge,
+      league,
       date,
       kick_off,
       meet_up,
@@ -40,58 +42,171 @@ const AddFixtureModal = ({ navigation }) => {
     navigation.navigate("ClubMain", { newMatch });
   });
 
-  const items = [
-    "Deeping Devils Ladies",
-    "Derby Ladies",
-    "Devizes Ladies",
-    "Devonport Services Ladies",
-    "Didcot Ladies",
-    "Didsbury Toc H Ladies",
-    "Dings Crusaders Women",
-    "Doncaster Ladies",
+  const teams = [
+    "Aldwinian Women",
+    "Amber Valey Tigers Ladies",
+    "Battersea Ironsides Women",
+    "Battersea Ironsides Women II",
+    "Bec Belles Ladies",
+    "Beccehamian Ladies",
+    "Belsize Park Women",
+    "Biggleswade Ladies",
+    "Birkenhead Park Ladies",
+    "Birmingham Moseley Women",
+    "Blaydon Redkites Women",
+    "Blaydon Redkites Women II",
+    "Bury Fox Ladies",
+    "Bury Ladies",
+    "Camberly Women",
+    "Camborne Women",
+    "Cambridge Women",
+    "Cannock Lionesses Ladies",
+    "Caterbury Ladies",
+    "Caslisle Cougars Ladies",
+    "Cheddar Ladies",
+    "Chelmsfrod Ladies",
+    "Cheltenham Civil Service Ladies",
+    "Cheltenham Ladies II",
+    "Crawley Ladies",
+    "Crediton Ladies",
+    "Crewe & Nantwich Ladies",
+    "Crowthorne Ladies",
+    "Cullompton Ladies",
+    "Darlington Ladies",
     "Driffield Ladies",
     "Drybrook Ladies",
     "Dudley Kingswinford Ladies",
+    "Dursley Ladies",
+    "Ealing Trailfinders Ladies",
   ];
 
-  const [isPickerVisible, setPickerVisible] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("");
+  LEAGUES = [
+    "Championship North 1",
+    "Championship South 1",
+    "Championship Midlands 2",
+    "Championship North 2",
+    "Championship South East 2",
+    "Championship South West 2",
+    "NC 1 East",
+    "NC 1 Midlands",
+    "NC 1 North",
+    "NC 1 North West",
+    "NC 1 South East (East)",
+    "NC 1 South East (West)",
+    "NC 1 South West (East)",
+    "NC 1 South West (West)",
+    "NC 2 Midlands (Central)",
+    "NC 2 Midlands (East)",
+    "NC 2 Midlands (North East)",
+    "NC 2 Midlands (West)",
+    "NC 2 North (East)",
+    "NC 2 North (North)",
+    "NC 2 North (West)",
+    "NC 2 South East (Central)",
+    "NC 2 South East (East)",
+    "NC 2 South East (North)",
+    "NC 2 South East (South)",
+    "NC 2 South East (West)",
+    "NC 2 South West (Central)",
+    "NC 2 South West (North)",
+    "NC 2 South West (East)",
+    "NC 2 South West (West)",
+    "NC 3 Midlands (East)",
+    "NC 3 Midlands (South)",
+    "NC 3 Midlands (West)",
+    "NC 3 North (Central)",
+    "NC 3 North (East)",
+    "NC 3 North (North)",
+    "NC 3 North (South)",
+    "NC 3 North (West)",
+    "NC 3 South East (East)",
+    "NC 3 South East (South)",
+    "NC 3 South East (West)",
+    "NC 3 South West (East)",
+    "NC 3 South West (North)",
+    "NC 3 South West (South)",
+    "NC 3 South West (West)",
+  ];
 
-  const handlePress = () => {
-    setPickerVisible(true);
+  //for name
+  const [isNamePickerVisible, setNamePickerVisible] = useState(false);
+  const [selectedNameValue, setNameSelectedValue] = useState("select name");
+
+  const handleNamePress = () => {
+    setNamePickerVisible(true);
   };
 
   const handleNamePickerSelect = (itemValue) => {
-    setSelectedValue(itemValue);
-    setPickerVisible(false);
+    setNameSelectedValue(itemValue);
+    setName(itemValue);
+    setNamePickerVisible(false);
+  };
+
+  //for League
+  const [isLeaguePickerVisible, setLeaguePickerVisible] = useState(false);
+  const [selectedLeagueValue, setLeagueSelectedValue] = useState("");
+
+  const handleLeaguePress = () => {
+    setLeaguePickerVisible(true);
+  };
+
+  const handleLeaguePickerSelect = (itemValue) => {
+    setLeagueSelectedValue(itemValue);
+    setLeague(itemValue);
+    setLeaguePickerVisible(false);
   };
 
   return (
-    <>
-      <SafeAreaView>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+      style={styles.container}
+    >
+      <ScrollView style={styles.inputContainer}>
         <Text>Club Name</Text>
-        <Pressable onPress={handlePress} style={styles.inputContainer}>
-          <Text>{selectedValue ? selectedValue : "Select Team"}</Text>
+        <Pressable onPress={handleNamePress} style={styles.input}>
+          <Text>
+            {selectedNameValue ? selectedNameValue : "Select Your Club Name"}
+          </Text>
         </Pressable>
-        {isPickerVisible && (
+        {isNamePickerVisible && (
           <Picker
             style={styles.picker}
-            selectedValue={selectedValue}
+            selectedNameValue={selectedNameValue}
             onValueChange={handleNamePickerSelect}
           >
-            {items.map((item, index) => (
+            {teams.map((item, index) => (
               <Picker.item key={index} label={item} value={item} />
             ))}
           </Picker>
         )}
 
-        <Text>Leauge</Text>
-        <TextInput
+        <Text>League</Text>
+        {/* <TextInput
           style={styles.input}
-          value={leauge}
+          value={league}
           placeholder="select your Leauge"
-          onChangeText={setLeauge}
-        />
+          onChangeText={setLeague}
+        /> */}
+
+        <Pressable onPress={handleLeaguePress} style={styles.input}>
+          <Text>
+            {selectedLeagueValue
+              ? selectedLeagueValue
+              : "Select Your Club's League"}
+          </Text>
+        </Pressable>
+        {isLeaguePickerVisible && (
+          <Picker
+            style={styles.picker}
+            selectedLeagueValue={selectedLeagueValue}
+            onValueChange={handleLeaguePickerSelect}
+          >
+            {LEAGUES.map((item, index) => (
+              <Picker.item key={index} label={item} value={item} />
+            ))}
+          </Picker>
+        )}
         <Text>Date</Text>
         <TextInput
           style={styles.input}
@@ -135,12 +250,15 @@ const AddFixtureModal = ({ navigation }) => {
           onChangeText={setComments}
         />
         <Button title="Add a fixture" onPress={handleSubmit} />
-      </SafeAreaView>
-    </>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   input: {
     height: 40,
     margin: 12,
