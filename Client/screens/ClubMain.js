@@ -1,18 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import Button from "../components/Button";
 import io from "socket.io-client";
 
 import MatchList from "../components/MatchList";
+import SignUpAlert from "../components/SignUpAlert";
 
-const ClubMain = ({ navigation }) => {
-  // const componentDidMount = () => {
-  //   const socket = io("http://192.168.0.211:3000");
-  // };
-
-  useEffect(() => {
-    const socket = io("http://192.168.0.211:3000");
-  }, []);
+const ClubMain = ({ navigation, alertMessage }) => {
+  //const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <>
@@ -23,6 +18,7 @@ const ClubMain = ({ navigation }) => {
         />
       </View>
       <MatchList />
+      {alertMessage !== "" ? <SignUpAlert /> : null}
     </>
   );
 };

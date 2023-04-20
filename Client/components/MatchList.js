@@ -3,7 +3,7 @@ import { View, FlatList, Text, StyleSheet } from "react-native";
 import MatchBox from "./MatchBox";
 import { getAll } from "../API";
 
-const MatchList = () => {
+const MatchList = ({ setAlertMessage }) => {
   const [matchArr, setMatches] = useState([]);
   const [isRefreshing, setRefreshing] = useState(false);
 
@@ -30,7 +30,9 @@ const MatchList = () => {
       <FlatList
         data={matchArr}
         keyExtractor={(item) => item._id}
-        renderItem={({ item }) => <MatchBox item={item} />}
+        renderItem={({ item }) => (
+          <MatchBox item={item} setAlertMessage={setAlertMessage} />
+        )}
         refreshing={isRefreshing}
         onRefresh={handleRefresh}
       />

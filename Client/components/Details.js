@@ -2,7 +2,13 @@ import React from "react";
 import { Modal, Text, View, Pressable, StyleSheet } from "react-native";
 import Button from "./Button";
 
-const Details = ({ item, modalVisible, setModalVisible }) => {
+const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
+  const handleSignUp = () => {
+    const message =
+      "You Have a Player Confirmed! 🏉 Yayyy - your game can go ahead!";
+    setAlertMessage(message);
+  };
+
   return (
     <Modal
       animationType="slide"
@@ -27,12 +33,7 @@ const Details = ({ item, modalVisible, setModalVisible }) => {
             <Text style={styles.modalTextComments}>
               We are looking for {item.looking_for}. {item.comments}
             </Text>
-            <Button
-              title={"Sign Up"}
-              onPress={() => {
-                console.log("signed up");
-              }}
-            ></Button>
+            <Button title={"Sign Up"} onPress={handleSignUp}></Button>
           </View>
         </View>
       </Pressable>

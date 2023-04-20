@@ -1,4 +1,5 @@
 const serverURL = "http://192.168.0.211:3001";
+//const socketURL = "http://192.168.0.211:3000";
 
 //URL: 192.168.0.211:19008
 
@@ -27,5 +28,7 @@ const postMatch = async (payload) => {
     console.error("Error occurred on the Back End");
   }
 };
+
+//const postSignUpAlert = async () => {}
 
 module.exports = { getAll, postMatch };

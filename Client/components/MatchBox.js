@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Details from "./Details";
 
-const MatchBox = ({ item }) => {
+const MatchBox = ({ item, setAlertMessage }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handlePress = () => {
@@ -32,6 +32,7 @@ const MatchBox = ({ item }) => {
         </View>
       </Pressable>
       <Details
+        setAlertMessage={setAlertMessage}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         item={item}
