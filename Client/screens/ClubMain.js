@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
+import { useRoute } from "@react-navigation/native";
 import Button from "../components/Button";
 
 import MatchList from "../components/MatchList";
@@ -7,7 +8,6 @@ import SignUpAlert from "../components/SignUpAlert";
 
 const ClubMain = ({ navigation, alertMessage, setAlertMessage }) => {
   return (
-    //<SafeAreaView>
     <>
       <View style={styles.container}>
         <Button
@@ -20,7 +20,6 @@ const ClubMain = ({ navigation, alertMessage, setAlertMessage }) => {
         <SignUpAlert setAlertMessage={setAlertMessage} />
       ) : null}
     </>
-    //</SafeAreaView>
   );
 };
 

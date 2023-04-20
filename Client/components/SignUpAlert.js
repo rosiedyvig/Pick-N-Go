@@ -15,7 +15,7 @@ const SignUpAlert = ({ setAlertMessage }) => {
       visible={alertVisible}
       onRequestClose={() => {
         setAlertVisible(!alertVisible);
-        resetAlertMessage();
+        //resetAlertMessage();
       }}
     >
       <Pressable

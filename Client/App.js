@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import { StyleSheet, Text, SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -11,11 +11,13 @@ import io from "socket.io-client";
 
 const RootStack = createStackNavigator();
 
+//const AlertContext = createContext();
+
 export default function App() {
   const [socket, setSocket] = useState(null);
   const [alertMessage, setAlertMessage] = useState(false);
 
-  useEffect(() => console.log("alert : ", alertMessage), [alertMessage]);
+  useEffect(() => console.log("alert : ", alertMessage));
 
   useEffect(() => {
     if (socket) {
@@ -29,26 +31,25 @@ export default function App() {
   }, []);
 
   return (
+    // <AlertContext.Provider value={{ alertMessage, setAlertMessage }}>
     <NavigationContainer>
       <RootStack.Navigator>
         <RootStack.Screen name="Home" component={Home} />
-        <RootStack.Screen
-          name="ClubMain"
-          component={ClubMain}
-          options={({ navigation }) => ({
-            headerShown: true,
-            params: {
-              alertMessage,
-              setAlertMessage,
-            },
-          })}
-        />
+        <RootStack.Screen name="ClubMain">
+          {() => (
+            <ClubMain
+              alertMessage={alertMessage}
+              setAlertMessage={setAlertMessage}
+            />
+          )}
+        </RootStack.Screen>
         <RootStack.Screen name="PlayerMain">
           {() => <PlayerMain setAlertMessage={setAlertMessage} />}
         </RootStack.Screen>
         <RootStack.Screen name="AddFixture" component={AddFixture} />
       </RootStack.Navigator>
     </NavigationContainer>
+    // </AlertContext.Provider>
   );
 }
 
