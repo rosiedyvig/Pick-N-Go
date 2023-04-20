@@ -15,7 +15,8 @@ import {
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { postMatch } from "../API";
-import { TEAMS, LEAGUES } from "../db";
+import { TEAMS, LEAGUES, POSITIONS } from "../db";
+import ScrollSelection from "../components/ScrollSelection";
 
 const AddFixtureModal = ({ navigation }) => {
   const [name, setName] = useState(null);
@@ -142,7 +143,7 @@ const AddFixtureModal = ({ navigation }) => {
             ))}
           </Picker>
         )}
-
+        <ScrollSelection items={TEAMS} onSelect={setName} />
         <Text>Date</Text>
         <Pressable
           onPress={() => {
