@@ -18,10 +18,9 @@ const ScrollSelection = ({ items, onSelect }) => {
 
   return (
     <>
-      <Text>Club Name</Text>
       <ScrollView style={styles.inputContainer}>
         <Pressable onPress={handlePress}>
-          <Text>{selectedValue ? selectedValue : "Select Your Club Name"}</Text>
+          <Text>{selectedValue ? selectedValue : "Select From the below"}</Text>
         </Pressable>
         {isPickerVisible && (
           <Picker
@@ -40,11 +39,16 @@ const ScrollSelection = ({ items, onSelect }) => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    // height: 40,
+    // margin: 12,
+    // borderWidth: 1,
+    // padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
     borderWidth: 1,
     borderColor: "gray",
-    borderRadius: 8,
+    borderRadius: 10,
+    marginBottom: 5,
   },
 });
 

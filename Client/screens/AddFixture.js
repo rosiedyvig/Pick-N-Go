@@ -52,18 +52,18 @@ const AddFixtureModal = ({ navigation }) => {
   });
 
   //for name
-  const [isNamePickerVisible, setNamePickerVisible] = useState(false);
-  const [selectedNameValue, setNameSelectedValue] = useState("select name");
+  // const [isNamePickerVisible, setNamePickerVisible] = useState(false);
+  // const [selectedNameValue, setNameSelectedValue] = useState("select name");
 
-  const handleNamePress = () => {
-    setNamePickerVisible(true);
-  };
+  // const handleNamePress = () => {
+  //   setNamePickerVisible(true);
+  // };
 
-  const handleNamePickerSelect = (itemValue) => {
-    setNameSelectedValue(itemValue);
-    setName(itemValue);
-    setNamePickerVisible(false);
-  };
+  // const handleNamePickerSelect = (itemValue) => {
+  //   setNameSelectedValue(itemValue);
+  //   setName(itemValue);
+  //   setNamePickerVisible(false);
+  // };
 
   //for League
   const [isLeaguePickerVisible, setLeaguePickerVisible] = useState(false);
@@ -106,7 +106,7 @@ const AddFixtureModal = ({ navigation }) => {
       style={styles.container}
     >
       <ScrollView style={styles.inputContainer}>
-        <Text>Club Name</Text>
+        {/* <Text>Club Name</Text>
         <Pressable onPress={handleNamePress} style={styles.input}>
           <Text>
             {selectedNameValue ? selectedNameValue : "Select Your Club Name"}
@@ -122,9 +122,9 @@ const AddFixtureModal = ({ navigation }) => {
               <Picker.Item key={index} label={item} value={item} />
             ))}
           </Picker>
-        )}
+        )} */}
 
-        <Text>League</Text>
+        {/* <Text>League</Text>
         <Pressable onPress={handleLeaguePress} style={styles.input}>
           <Text>
             {selectedLeagueValue
@@ -142,8 +142,11 @@ const AddFixtureModal = ({ navigation }) => {
               <Picker.Item key={index} label={item} value={item} />
             ))}
           </Picker>
-        )}
+        )} */}
+        <Text>Club Name</Text>
         <ScrollSelection items={TEAMS} onSelect={setName} />
+        <Text>League</Text>
+        <ScrollSelection items={LEAGUES} onSelect={setLeague} />
         <Text>Date</Text>
         <Pressable
           onPress={() => {
@@ -199,13 +202,15 @@ const AddFixtureModal = ({ navigation }) => {
           placeholder="enter the post code of the pitch"
           onChangeText={setLocation}
         />
-        <Text>What are you looking for</Text>
+        {/* <Text>What are you looking for</Text>
         <TextInput
           style={styles.input}
           value={looking_for}
           placeholder="select the positions you need or opposition"
           onChangeText={setLookingFor}
-        />
+        /> */}
+        <Text>What are you looking for</Text>
+        <ScrollSelection items={POSITIONS} onSelect={setLookingFor} />
         <Text>Any Comments?</Text>
         <TextInput
           style={styles.input}
@@ -239,11 +244,11 @@ const styles = StyleSheet.create({
     height: 300,
   },
   inputContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
     borderWidth: 1,
     borderColor: "gray",
-    borderRadius: 8,
+    borderRadius: 10,
   },
 });
 
