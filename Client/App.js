@@ -11,8 +11,6 @@ import io from "socket.io-client";
 
 const RootStack = createStackNavigator();
 
-//const AlertContext = createContext();
-
 export default function App() {
   const [socket, setSocket] = useState(null);
   const [alertMessage, setAlertMessage] = useState(false);
@@ -31,7 +29,6 @@ export default function App() {
   }, []);
 
   return (
-    // <AlertContext.Provider value={{ alertMessage, setAlertMessage }}>
     <NavigationContainer>
       <RootStack.Navigator>
         <RootStack.Screen name="Home" component={Home} />
@@ -49,7 +46,6 @@ export default function App() {
         <RootStack.Screen name="AddFixture" component={AddFixture} />
       </RootStack.Navigator>
     </NavigationContainer>
-    // </AlertContext.Provider>
   );
 }
 
