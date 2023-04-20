@@ -10,14 +10,18 @@ import {
   Alert,
   Pressable,
   KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { postMatch } from "../API";
+import { TEAMS, LEAGUES } from "../db";
 
 const AddFixtureModal = ({ navigation }) => {
   const [name, setName] = useState(null);
   const [league, setLeague] = useState("");
-  const [date, setDate] = useState("");
-  const [kick_off, setKickOff] = useState("");
+  const [date, setDate] = useState(new Date());
+  const [kick_off, setKickOff] = useState(new Date());
   const [meet_up, setMeetUp] = useState("");
   const [location, setLocation] = useState("");
   const [looking_for, setLookingFor] = useState("");
@@ -39,94 +43,12 @@ const AddFixtureModal = ({ navigation }) => {
       looking_for,
       comments,
     };
-    navigation.navigate("ClubMain", { newMatch });
+
+    console.log(newMatch);
+    postMatch(newMatch);
+
+    navigation.navigate("ClubMain");
   });
-
-  const teams = [
-    "Aldwinian Women",
-    "Amber Valey Tigers Ladies",
-    "Battersea Ironsides Women",
-    "Battersea Ironsides Women II",
-    "Bec Belles Ladies",
-    "Beccehamian Ladies",
-    "Belsize Park Women",
-    "Biggleswade Ladies",
-    "Birkenhead Park Ladies",
-    "Birmingham Moseley Women",
-    "Blaydon Redkites Women",
-    "Blaydon Redkites Women II",
-    "Bury Fox Ladies",
-    "Bury Ladies",
-    "Camberly Women",
-    "Camborne Women",
-    "Cambridge Women",
-    "Cannock Lionesses Ladies",
-    "Caterbury Ladies",
-    "Caslisle Cougars Ladies",
-    "Cheddar Ladies",
-    "Chelmsfrod Ladies",
-    "Cheltenham Civil Service Ladies",
-    "Cheltenham Ladies II",
-    "Crawley Ladies",
-    "Crediton Ladies",
-    "Crewe & Nantwich Ladies",
-    "Crowthorne Ladies",
-    "Cullompton Ladies",
-    "Darlington Ladies",
-    "Driffield Ladies",
-    "Drybrook Ladies",
-    "Dudley Kingswinford Ladies",
-    "Dursley Ladies",
-    "Ealing Trailfinders Ladies",
-  ];
-
-  LEAGUES = [
-    "Championship North 1",
-    "Championship South 1",
-    "Championship Midlands 2",
-    "Championship North 2",
-    "Championship South East 2",
-    "Championship South West 2",
-    "NC 1 East",
-    "NC 1 Midlands",
-    "NC 1 North",
-    "NC 1 North West",
-    "NC 1 South East (East)",
-    "NC 1 South East (West)",
-    "NC 1 South West (East)",
-    "NC 1 South West (West)",
-    "NC 2 Midlands (Central)",
-    "NC 2 Midlands (East)",
-    "NC 2 Midlands (North East)",
-    "NC 2 Midlands (West)",
-    "NC 2 North (East)",
-    "NC 2 North (North)",
-    "NC 2 North (West)",
-    "NC 2 South East (Central)",
-    "NC 2 South East (East)",
-    "NC 2 South East (North)",
-    "NC 2 South East (South)",
-    "NC 2 South East (West)",
-    "NC 2 South West (Central)",
-    "NC 2 South West (North)",
-    "NC 2 South West (East)",
-    "NC 2 South West (West)",
-    "NC 3 Midlands (East)",
-    "NC 3 Midlands (South)",
-    "NC 3 Midlands (West)",
-    "NC 3 North (Central)",
-    "NC 3 North (East)",
-    "NC 3 North (North)",
-    "NC 3 North (South)",
-    "NC 3 North (West)",
-    "NC 3 South East (East)",
-    "NC 3 South East (South)",
-    "NC 3 South East (West)",
-    "NC 3 South West (East)",
-    "NC 3 South West (North)",
-    "NC 3 South West (South)",
-    "NC 3 South West (West)",
-  ];
 
   //for name
   const [isNamePickerVisible, setNamePickerVisible] = useState(false);
@@ -156,6 +78,26 @@ const AddFixtureModal = ({ navigation }) => {
     setLeaguePickerVisible(false);
   };
 
+  //for Date
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const handleDateSelect = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowDatePicker(Platform.OS === "ios");
+    setDate(currentDate);
+    setShowDatePicker(false);
+  };
+
+  //for Kick Off
+  const [showKickOffPicker, setShowKickOffPicker] = useState(false);
+
+  const handleKickOffSelect = (event, selectedKickOff) => {
+    const currentKickOff = selectedKickOff || kick_off;
+    setShowKickOffPicker(Platform.OS === "ios");
+    setKickOff(currentKickOff);
+    setShowKickOffPicker(false);
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -175,20 +117,13 @@ const AddFixtureModal = ({ navigation }) => {
             selectedNameValue={selectedNameValue}
             onValueChange={handleNamePickerSelect}
           >
-            {teams.map((item, index) => (
-              <Picker.item key={index} label={item} value={item} />
+            {TEAMS.map((item, index) => (
+              <Picker.Item key={index} label={item} value={item} />
             ))}
           </Picker>
         )}
 
         <Text>League</Text>
-        {/* <TextInput
-          style={styles.input}
-          value={league}
-          placeholder="select your Leauge"
-          onChangeText={setLeague}
-        /> */}
-
         <Pressable onPress={handleLeaguePress} style={styles.input}>
           <Text>
             {selectedLeagueValue
@@ -203,24 +138,52 @@ const AddFixtureModal = ({ navigation }) => {
             onValueChange={handleLeaguePickerSelect}
           >
             {LEAGUES.map((item, index) => (
-              <Picker.item key={index} label={item} value={item} />
+              <Picker.Item key={index} label={item} value={item} />
             ))}
           </Picker>
         )}
+
         <Text>Date</Text>
-        <TextInput
-          style={styles.input}
-          value={date}
-          placeholder="select Date of Fixture"
-          onChangeText={setDate}
-        />
+        <Pressable
+          onPress={() => {
+            setShowDatePicker(true);
+          }}
+        >
+          {/* {showDatePicker && ( */}
+          <DateTimePicker
+            style={styles.dateinput}
+            value={date}
+            mode="date"
+            display="default"
+            onChange={handleDateSelect}
+          />
+          {/* )} */}
+          {/* <Text style={styles.dateinput} placeholder={"Add the fixture date"}> */}
+          {/* {date.toDateString()} */}
+          {/* <DateTimePicker value={date} />
+          </Text> */}
+        </Pressable>
+
         <Text>Kick Off Time</Text>
-        <TextInput
-          style={styles.input}
-          value={kick_off}
-          placeholder="select kick off time"
-          onChangeText={setKickOff}
-        />
+        <Pressable
+          onPress={() => {
+            setShowKickOffPicker(true);
+          }}
+        >
+          <Text style={styles.input} placeholder={"Add the fixture time"}>
+            {kick_off.toLocaleTimeString()}
+          </Text>
+        </Pressable>
+
+        {showKickOffPicker && (
+          <DateTimePicker
+            value={kick_off}
+            mode="time"
+            display="default"
+            onChange={handleKickOffSelect}
+          />
+        )}
+
         <Text>Meet Up Time</Text>
         <TextInput
           style={styles.input}
@@ -264,6 +227,11 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+  },
+  dateinput: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
   },
   picker: {
     width: "100%",

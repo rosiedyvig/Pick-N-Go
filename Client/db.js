@@ -1,4 +1,4 @@
-LEAGUES = [
+const LEAGUES = [
   "Championship North 1",
   "Championship South 1",
   "Championship Midlands 2",
@@ -46,7 +46,7 @@ LEAGUES = [
   "NC 3 South West (West)",
 ];
 
-TEAMS = [
+const TEAMS = [
   "Aldwinian Women",
   "Amber Valey Tigers Ladies",
   "Amesbury Ladies",

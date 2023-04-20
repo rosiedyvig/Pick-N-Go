@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./screens/Home";
 import PlayerMain from "./screens/PlayerMain";
 import ClubMain from "./screens/ClubMain";
-import AddFixtureModal from "./screens/AddFixtureModal";
+import AddFixture from "./screens/AddFixture";
 
 const RootStack = createStackNavigator();
 
@@ -16,7 +16,7 @@ export default function App() {
         <RootStack.Screen name="Home" component={Home} />
         <RootStack.Screen name="ClubMain" component={ClubMain} />
         <RootStack.Screen name="PlayerMain" component={PlayerMain} />
-        <RootStack.Screen name="AddFixtureModal" component={AddFixtureModal} />
+        <RootStack.Screen name="AddFixture" component={AddFixture} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

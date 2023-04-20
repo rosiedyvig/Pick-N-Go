@@ -1,32 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import Button from "./Button";
+import Details from "./Details";
 
 const MatchBox = ({ item }) => {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handlePress = () => {
+    setModalVisible(true);
+    console.log("inside press of the box");
+  };
+
   return (
-    <Pressable
-      onPress={() => {
-        console.log("hello");
-      }}
-    >
-      <View style={styles.container}>
-        <View style={[styles.section, styles.section1]}>
-          <Text>{item.name}</Text>
-          <Text>{item.leauge}</Text>
-        </View>
-        <View style={[styles.section, styles.section2]}>
-          <Text>{item.date}</Text>
-          <Text>{item.kick_off}</Text>
-          <Text>{item.location}</Text>
-        </View>
-        <View style={[styles.section, styles.section3]}>
-          <Text>{item.looking_for}</Text>
-        </View>
-        {/* <View style={[styles.section, styles.section4]}>
+    <>
+      <Pressable onPress={handlePress}>
+        <View style={styles.container}>
+          <View style={[styles.section, styles.section1]}>
+            <Text>{item.name}</Text>
+            <Text>{item.leauge}</Text>
+          </View>
+          <View style={[styles.section, styles.section2]}>
+            <Text>{item.date}</Text>
+            <Text>{item.kick_off}</Text>
+            <Text>{item.location}</Text>
+          </View>
+          <View style={[styles.section, styles.section3]}>
+            <Text>{item.looking_for}</Text>
+          </View>
+          {/* <View style={[styles.section, styles.section4]}>
         <Button title="Sign Up!" onPress={() => {}} />
       </View> */}
-      </View>
-    </Pressable>
+        </View>
+      </Pressable>
+      <Details
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        item={item}
+      />
+    </>
   );
 };
 // {item.meet_up}

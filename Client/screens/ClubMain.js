@@ -10,7 +10,7 @@ const ClubMain = ({ navigation }) => {
       <View style={styles.container}>
         <Button
           title="Add a fixture"
-          onPress={() => navigation.navigate("AddFixtureModal")}
+          onPress={() => navigation.navigate("AddFixture")}
         />
       </View>
       <MatchList />

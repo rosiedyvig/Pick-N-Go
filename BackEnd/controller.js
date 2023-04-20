@@ -20,7 +20,7 @@ const addMatch = async (req, res) => {
     } else {
       await Match.create({
         name: match.name,
-        leauge: match.leauge,
+        leauge: match.league,
         date: match.date,
         kick_off: match.kick_off,
         meet_up: match.meet_up,
@@ -29,9 +29,10 @@ const addMatch = async (req, res) => {
         comments: match.comments,
       });
       res.status(201);
-      res.json(match);
+      res.send(match);
     }
   } catch (e) {
+    console.log(e);
     res.status(500);
     res.send(e.message);
   }

@@ -18,6 +18,7 @@ const MatchList = () => {
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
     //fetch from the db again!
+    console.log("inside the function");
     const eventsFromDb = await getAll();
     setMatches(eventsFromDb);
     setTimeout(() => {
