@@ -1,7 +1,5 @@
 import React, { useState, useCallback } from "react";
 import {
-  SafeAreaView,
-  View,
   ScrollView,
   Text,
   TextInput,
@@ -12,11 +10,12 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { postMatch } from "../API";
 import { TEAMS, LEAGUES, POSITIONS } from "../db";
 import ScrollSelection from "../components/ScrollSelection";
+import DateSelection from "../components/DateSelection";
 
 const AddFixtureModal = ({ navigation }) => {
   const [name, setName] = useState(null);
@@ -51,43 +50,15 @@ const AddFixtureModal = ({ navigation }) => {
     navigation.navigate("ClubMain");
   });
 
-  //for name
-  // const [isNamePickerVisible, setNamePickerVisible] = useState(false);
-  // const [selectedNameValue, setNameSelectedValue] = useState("select name");
-
-  // const handleNamePress = () => {
-  //   setNamePickerVisible(true);
-  // };
-
-  // const handleNamePickerSelect = (itemValue) => {
-  //   setNameSelectedValue(itemValue);
-  //   setName(itemValue);
-  //   setNamePickerVisible(false);
-  // };
-
-  //for League
-  const [isLeaguePickerVisible, setLeaguePickerVisible] = useState(false);
-  const [selectedLeagueValue, setLeagueSelectedValue] = useState("");
-
-  const handleLeaguePress = () => {
-    setLeaguePickerVisible(true);
-  };
-
-  const handleLeaguePickerSelect = (itemValue) => {
-    setLeagueSelectedValue(itemValue);
-    setLeague(itemValue);
-    setLeaguePickerVisible(false);
-  };
-
   //for Date
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  // const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const handleDateSelect = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShowDatePicker(Platform.OS === "ios");
-    setDate(currentDate);
-    setShowDatePicker(false);
-  };
+  // const handleDateSelect = (event, selectedDate) => {
+  //   const currentDate = selectedDate || date;
+  //   setShowDatePicker(Platform.OS === "ios");
+  //   setDate(currentDate);
+  //   setShowDatePicker(false);
+  // };
 
   //for Kick Off
   const [showKickOffPicker, setShowKickOffPicker] = useState(false);
@@ -106,67 +77,12 @@ const AddFixtureModal = ({ navigation }) => {
       style={styles.container}
     >
       <ScrollView style={styles.inputContainer}>
-        {/* <Text>Club Name</Text>
-        <Pressable onPress={handleNamePress} style={styles.input}>
-          <Text>
-            {selectedNameValue ? selectedNameValue : "Select Your Club Name"}
-          </Text>
-        </Pressable>
-        {isNamePickerVisible && (
-          <Picker
-            style={styles.picker}
-            selectedNameValue={selectedNameValue}
-            onValueChange={handleNamePickerSelect}
-          >
-            {TEAMS.map((item, index) => (
-              <Picker.Item key={index} label={item} value={item} />
-            ))}
-          </Picker>
-        )} */}
-
-        {/* <Text>League</Text>
-        <Pressable onPress={handleLeaguePress} style={styles.input}>
-          <Text>
-            {selectedLeagueValue
-              ? selectedLeagueValue
-              : "Select Your Club's League"}
-          </Text>
-        </Pressable>
-        {isLeaguePickerVisible && (
-          <Picker
-            style={styles.picker}
-            selectedLeagueValue={selectedLeagueValue}
-            onValueChange={handleLeaguePickerSelect}
-          >
-            {LEAGUES.map((item, index) => (
-              <Picker.Item key={index} label={item} value={item} />
-            ))}
-          </Picker>
-        )} */}
         <Text>Club Name</Text>
         <ScrollSelection items={TEAMS} onSelect={setName} />
         <Text>League</Text>
         <ScrollSelection items={LEAGUES} onSelect={setLeague} />
         <Text>Date</Text>
-        <Pressable
-          onPress={() => {
-            setShowDatePicker(true);
-          }}
-        >
-          {/* {showDatePicker && ( */}
-          <DateTimePicker
-            style={styles.dateinput}
-            value={date}
-            mode="date"
-            display="default"
-            onChange={handleDateSelect}
-          />
-          {/* )} */}
-          {/* <Text style={styles.dateinput} placeholder={"Add the fixture date"}> */}
-          {/* {date.toDateString()} */}
-          {/* <DateTimePicker value={date} />
-          </Text> */}
-        </Pressable>
+        <DateSelection setDate={setDate} />
 
         <Text>Kick Off Time</Text>
         <Pressable
@@ -202,13 +118,6 @@ const AddFixtureModal = ({ navigation }) => {
           placeholder="enter the post code of the pitch"
           onChangeText={setLocation}
         />
-        {/* <Text>What are you looking for</Text>
-        <TextInput
-          style={styles.input}
-          value={looking_for}
-          placeholder="select the positions you need or opposition"
-          onChangeText={setLookingFor}
-        /> */}
         <Text>What are you looking for</Text>
         <ScrollSelection items={POSITIONS} onSelect={setLookingFor} />
         <Text>Any Comments?</Text>
@@ -234,11 +143,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  dateinput: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-  },
+  // dateinput: {
+  //   height: 40,
+  //   margin: 12,
+  //   borderWidth: 1,
+  // },
   picker: {
     width: "100%",
     height: 300,

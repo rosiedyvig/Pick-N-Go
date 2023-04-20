@@ -39,10 +39,6 @@ const ScrollSelection = ({ items, onSelect }) => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    // height: 40,
-    // margin: 12,
-    // borderWidth: 1,
-    // padding: 10,
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderWidth: 1,
