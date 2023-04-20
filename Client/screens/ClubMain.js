@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, SafeAreaView } from "react-native";
 import Button from "../components/Button";
-import io from "socket.io-client";
 
 import MatchList from "../components/MatchList";
 import SignUpAlert from "../components/SignUpAlert";
 
-const ClubMain = ({ navigation, alertMessage }) => {
-  //const [modalVisible, setModalVisible] = useState(false);
-
+const ClubMain = ({ navigation, alertMessage, setAlertMessage }) => {
   return (
+    //<SafeAreaView>
     <>
       <View style={styles.container}>
         <Button
@@ -18,8 +16,11 @@ const ClubMain = ({ navigation, alertMessage }) => {
         />
       </View>
       <MatchList />
-      {alertMessage !== "" ? <SignUpAlert /> : null}
+      {alertMessage === true ? (
+        <SignUpAlert setAlertMessage={setAlertMessage} />
+      ) : null}
     </>
+    //</SafeAreaView>
   );
 };
 

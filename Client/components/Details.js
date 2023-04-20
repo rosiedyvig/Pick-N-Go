@@ -4,9 +4,7 @@ import Button from "./Button";
 
 const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
   const handleSignUp = () => {
-    const message =
-      "You Have a Player Confirmed! 🏉 Yayyy - your game can go ahead!";
-    setAlertMessage(message);
+    setAlertMessage(true);
   };
 
   return (

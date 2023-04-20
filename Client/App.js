@@ -13,7 +13,7 @@ const RootStack = createStackNavigator();
 
 export default function App() {
   const [socket, setSocket] = useState(null);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState(false);
 
   useEffect(() => console.log("alert : ", alertMessage), [alertMessage]);
 
@@ -32,9 +32,27 @@ export default function App() {
     <NavigationContainer>
       <RootStack.Navigator>
         <RootStack.Screen name="Home" component={Home} />
-        <RootStack.Screen name="ClubMain">
-          {() => <ClubMain alertMessage={alertMessage} />}
-        </RootStack.Screen>
+        {/* <RootStack.Screen name="ClubMain">
+          {() => (
+            <ClubMain
+              alertMessage={alertMessage}
+              setAlertMessage={setAlertMessage}
+            />
+          )}
+        </RootStack.Screen> */}
+        <RootStack.Screen
+          name="ClubMain"
+          component={ClubMain}
+          options={({ navigation }) => ({
+            headerShown: true,
+            // Pass down additional props as params
+            params: {
+              alertMessage,
+              setAlertMessage,
+              // Add more props here
+            },
+          })}
+        />
         <RootStack.Screen name="PlayerMain">
           {() => <PlayerMain setAlertMessage={setAlertMessage} />}
         </RootStack.Screen>
