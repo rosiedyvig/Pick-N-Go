@@ -39,9 +39,6 @@ const MatchBox = ({ item }) => {
     </>
   );
 };
-// {item.meet_up}
-// {item.location}
-// {item.comments}
 
 const styles = StyleSheet.create({
   container: {
