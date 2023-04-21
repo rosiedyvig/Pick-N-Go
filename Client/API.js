@@ -29,8 +29,6 @@ const postMatch = async (payload) => {
   }
 };
 
-//const postSignUpAlert = async () => {}
-
 const getLongLat = async (postcode) => {
   function PCF(str) {
     return str.replace(" ", "%20");
@@ -49,9 +47,11 @@ const getLongLat = async (postcode) => {
     fetch(
       `https://locations-and-postcodes-uk.p.rapidapi.com/getLocationForPostcode?postcode=${help}`,
       options
-    )
-      .then((response) => response.json())
-      .then((response) => console.log(response));
+    );
+    const result = options.json();
+    return result;
+    // .then((response) => response.json())
+    // .then((response) => console.log(response));
   } catch (e) {
     console.error("Error occurred on the Back End");
   }

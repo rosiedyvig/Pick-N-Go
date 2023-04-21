@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   ScrollView,
   Text,
@@ -10,6 +10,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import { getLongLat } from "../API";
 
 import { postMatch } from "../API";
 import { TEAMS, LEAGUES, POSITIONS } from "../db";
@@ -28,7 +29,7 @@ const AddFixtureModal = ({ navigation }) => {
   const [looking_for, setLookingFor] = useState("");
   const [comments, setComments] = useState("");
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     if (name === "" || location === "" || meet_up === "") {
       Alert.alert("Please fill in every box to add a new event!");
       return;
@@ -46,7 +47,33 @@ const AddFixtureModal = ({ navigation }) => {
     };
 
     console.log(newMatch);
+    //postMatch(newMatch);
+
+    // useEffect(() => {
+    console.log("inside use effect in the add fixture comp");
+    const convertLocation = async () => {
+      const answer = await getLongLat(location);
+      newMatch.longitude = answer.longitude;
+      newMatch.latitude = answer.latitude;
+    };
+    convertLocation();
+    // }, []);
+
+    // const answer = await getLongLat(location);
+    // .then((answer) => {
+    // Store longitude and latitude values in newMatch object
+    // newMatch.longitude = answer.longitude;
+    // newMatch.latitude = answer.latitude;
+
+    // Post the newMatch object to the server
     postMatch(newMatch);
+    //})
+    // .catch((error) => {
+    //   console.error(
+    //     "Error occurred while fetching longitude and latitude:",
+    //     error
+    //   );
+    // });
 
     navigation.navigate("ClubMain");
   });
