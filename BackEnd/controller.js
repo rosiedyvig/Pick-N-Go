@@ -27,6 +27,8 @@ const addMatch = async (req, res) => {
         location: match.location,
         looking_for: match.looking_for,
         comments: match.comments,
+        longitude: match.longitude,
+        latitude: match.latitude,
       });
       res.status(201);
       res.send(match);

@@ -12,6 +12,8 @@ const matchSchema = new Schema(
     location: { type: String, required: true },
     looking_for: { type: String, required: true },
     comments: { type: String, required: true },
+    longitude: { type: String, required: true },
+    latitude: { type: String, required: true },
   },
   { timestamps: true }
 );

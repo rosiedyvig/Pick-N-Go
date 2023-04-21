@@ -1,37 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import { getLongLat } from "../../API";
 
 export default function Map({ item }) {
-  //   const [islongitude, setLongitude] = useState("1.13151");
-  //   const [isLatitude, setLatitude] = useState("51.8413");
-
-  //   useEffect(() => {
-  //     const getpostcode = async () => {
-  //       const answer = await getLongLat("CO16 9EG");
-  //       if (answer) {
-  //         setLongitude(answer.longitude);
-  //         setLatitude(answer.latitude);
-  //       }
-  //     };
-  //     getpostcode();
-  //   }, []);
-  console.log(item);
-  // const latitude = { item.latitude };
-  // const longitude
+  const { latitude, longitude } = item;
 
   return (
     <>
-      <Text>
+      {/* <Text>
         {item.location} {item.latitude}
-      </Text>
+      </Text> */}
       <MapView
         provider={PROVIDER_GOOGLE}
         style={{ flex: 1 }}
         initialRegion={{
-          latitude: "51.8413",
-          longitude: "1.13151",
+          latitude: latitude,
+          longitude: longitude,
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}
@@ -39,8 +23,8 @@ export default function Map({ item }) {
       >
         <Marker
           coordinate={{
-            latitude: "51.8413",
-            longitude: "1.13151",
+            latitude: latitude,
+            longitude: longitude,
           }}
         />
       </MapView>

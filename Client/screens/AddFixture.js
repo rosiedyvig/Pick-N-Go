@@ -20,7 +20,7 @@ import TimeSelection from "../components/TimeSelection";
 import MultipleSelection from "../components/MultipleSelection";
 
 const AddFixtureModal = ({ navigation }) => {
-  const [name, setName] = useState(null);
+  const [name, setName] = useState("");
   const [league, setLeague] = useState("");
   const [date, setDate] = useState(new Date());
   const [kick_off, setKickOff] = useState(new Date());
@@ -46,19 +46,20 @@ const AddFixtureModal = ({ navigation }) => {
       comments,
     };
 
-    console.log(newMatch);
     //postMatch(newMatch);
 
     // useEffect(() => {
     console.log("inside use effect in the add fixture comp");
     const convertLocation = async () => {
       const answer = await getLongLat(location);
+      console.log(answer);
       newMatch.longitude = answer.longitude;
       newMatch.latitude = answer.latitude;
     };
-    convertLocation();
+    await convertLocation();
     // }, []);
 
+    console.log(newMatch);
     // const answer = await getLongLat(location);
     // .then((answer) => {
     // Store longitude and latitude values in newMatch object

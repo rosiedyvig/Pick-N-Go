@@ -44,14 +44,21 @@ const getLongLat = async (postcode) => {
       },
     };
 
-    fetch(
-      `https://locations-and-postcodes-uk.p.rapidapi.com/getLocationForPostcode?postcode=${help}`,
-      options
+    return (
+      fetch(
+        `https://locations-and-postcodes-uk.p.rapidapi.com/getLocationForPostcode?postcode=${help}`,
+        options
+      )
+        // const result = options.json();
+        // return result;
+        .then((response) => {
+          return response.json();
+        })
+        .then((response) => {
+          console.log("this is from the API", response);
+          return response;
+        })
     );
-    const result = options.json();
-    return result;
-    // .then((response) => response.json())
-    // .then((response) => console.log(response));
   } catch (e) {
     console.error("Error occurred on the Back End");
   }
