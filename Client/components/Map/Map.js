@@ -7,9 +7,6 @@ export default function Map({ item }) {
 
   return (
     <>
-      {/* <Text>
-        {item.location} {item.latitude}
-      </Text> */}
       <MapView
         provider={PROVIDER_GOOGLE}
         style={{ flex: 1 }}
