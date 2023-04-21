@@ -55,7 +55,7 @@ const getLongLat = async (postcode) => {
           return response.json();
         })
         .then((response) => {
-          console.log("this is from the API", response);
+          //console.log("this is from the API", response);
           return response;
         })
     );

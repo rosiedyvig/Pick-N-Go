@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Text, View, Pressable, StyleSheet } from "react-native";
 import Button from "./Button";
-import Map from "./Map/Map";
+import Map from "./Map";
 
 const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
   const handleSignUp = () => {

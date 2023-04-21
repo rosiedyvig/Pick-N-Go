@@ -46,35 +46,15 @@ const AddFixtureModal = ({ navigation }) => {
       comments,
     };
 
-    //postMatch(newMatch);
-
-    // useEffect(() => {
     console.log("inside use effect in the add fixture comp");
     const convertLocation = async () => {
       const answer = await getLongLat(location);
-      console.log(answer);
       newMatch.longitude = answer.longitude;
       newMatch.latitude = answer.latitude;
     };
     await convertLocation();
-    // }, []);
 
-    console.log(newMatch);
-    // const answer = await getLongLat(location);
-    // .then((answer) => {
-    // Store longitude and latitude values in newMatch object
-    // newMatch.longitude = answer.longitude;
-    // newMatch.latitude = answer.latitude;
-
-    // Post the newMatch object to the server
     postMatch(newMatch);
-    //})
-    // .catch((error) => {
-    //   console.error(
-    //     "Error occurred while fetching longitude and latitude:",
-    //     error
-    //   );
-    // });
 
     navigation.navigate("ClubMain");
   });

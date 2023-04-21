@@ -26,9 +26,6 @@ const MatchBox = ({ item, setAlertMessage }) => {
           <View style={[styles.section, styles.section3]}>
             <Text>{item.looking_for}</Text>
           </View>
-          {/* <View style={[styles.section, styles.section4]}>
-        <Button title="Sign Up!" onPress={() => {}} />
-      </View> */}
         </View>
       </Pressable>
       <Details

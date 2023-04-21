@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Button from "../components/Button";
-import Map from "../components/Map/Map";
+import Login from "../components/SignUp";
+import SignUp from "../components/Login";
 
 const Home = ({ navigation }) => {
   return (
@@ -17,6 +18,9 @@ const Home = ({ navigation }) => {
           onPress={() => navigation.navigate("PlayerMain")}
         />
       </View>
+
+      <Login />
+      <SignUp />
     </View>
   );
 };
