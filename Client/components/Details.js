@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, Text, View, Pressable, StyleSheet } from "react-native";
 import Button from "./Button";
+import Map from "./Map/Map";
 
 const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
   const handleSignUp = () => {
@@ -23,10 +24,15 @@ const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalTextTitle}>{item.name} need you!</Text>
-            <View style={styles.info}>
-              <Text style={styles.modalText}>Meet Up: {item.meet_up}</Text>
-              <Text style={styles.modalText}>Kick Off: {item.kick_off}</Text>
-              <Text style={styles.modalText}>Location: {item.location}</Text>
+            <View style={styles.row}>
+              <View style={styles.info}>
+                <Text style={styles.modalText}>Meet Up: {item.meet_up}</Text>
+                <Text style={styles.modalText}>Kick Off: {item.kick_off}</Text>
+                <Text style={styles.modalText}>Location: {item.location}</Text>
+              </View>
+              <View style={styles.map}>
+                <Map item={item} />
+              </View>
             </View>
             <Text style={styles.modalTextComments}>
               We are looking for {item.looking_for}. {item.comments}
@@ -46,6 +52,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 22,
   },
+  row: {
+    flexDirection: "row",
+  },
   modalView: {
     margin: 10,
     backgroundColor: "white",
@@ -61,7 +70,13 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-
+  map: {
+    borderColor: "red",
+    borderWidth: 2,
+    width: 180,
+    height: 150,
+    marginLeft: 10,
+  },
   textStyle: {
     color: "white",
     fontWeight: "bold",

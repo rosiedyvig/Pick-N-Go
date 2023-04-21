@@ -11,11 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config.googleMapsApiKey": "AIzaSyAjYgfWupgcjInkjS6GrH6_vfQq4z3Dnp8"
     },
     "android": {
       "adaptiveIcon": {

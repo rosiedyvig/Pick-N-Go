@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Button from "../components/Button";
+import Map from "../components/Map/Map";
 
 const Home = ({ navigation }) => {
   return (

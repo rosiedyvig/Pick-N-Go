@@ -16,6 +16,7 @@ import { TEAMS, LEAGUES, POSITIONS } from "../db";
 import ScrollSelection from "../components/ScrollSelection";
 import DateSelection from "../components/DateSelection";
 import TimeSelection from "../components/TimeSelection";
+import MultipleSelection from "../components/MultipleSelection";
 
 const AddFixtureModal = ({ navigation }) => {
   const [name, setName] = useState(null);
@@ -58,8 +59,10 @@ const AddFixtureModal = ({ navigation }) => {
     >
       <ScrollView
         style={styles.inputContainer}
+        nestedScrollEnabled={true}
         // keyboardShouldPersistTaps="always"
       >
+        {/* <MultipleSelection items={POSITIONS} /> */}
         <Text>Club Name</Text>
         <ScrollSelection items={TEAMS} onSelect={setName} />
         <Text>League</Text>
