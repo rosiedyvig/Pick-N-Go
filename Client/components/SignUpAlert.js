@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Text, View, Pressable, StyleSheet } from "react-native";
 
-const SignUpAlert = ({ setAlertMessage }) => {
+const SignUpAlert = ({ text, setAlertMessage }) => {
   const [alertVisible, setAlertVisible] = useState(true);
 
   const resetAlertMessage = () => {
@@ -24,9 +24,7 @@ const SignUpAlert = ({ setAlertMessage }) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalTextTitle}>
-              You Have a Player Confirmed! 🏉 Yayyy - your game can go ahead!
-            </Text>
+            <Text style={styles.modalTextTitle}>{text}</Text>
           </View>
         </View>
       </Pressable>

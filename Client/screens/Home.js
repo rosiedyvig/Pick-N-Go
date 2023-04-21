@@ -18,9 +18,10 @@ const Home = ({ navigation }) => {
           onPress={() => navigation.navigate("PlayerMain")}
         />
       </View>
-
-      <Login />
-      <SignUp />
+      <View style={styles.buttoncontainer}>
+        <Login />
+        <SignUp />
+      </View>
     </View>
   );
 };

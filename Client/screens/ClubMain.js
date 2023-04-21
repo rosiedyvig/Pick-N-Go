@@ -18,7 +18,12 @@ const ClubMain = ({ alertMessage, setAlertMessage }) => {
       </View>
       <MatchList />
       {alertMessage === true ? (
-        <SignUpAlert setAlertMessage={setAlertMessage} />
+        <SignUpAlert
+          text={
+            "You Have a Player Confirmed! 🏉 Yayyy - your game can go ahead!"
+          }
+          setAlertMessage={setAlertMessage}
+        />
       ) : null}
     </>
   );
