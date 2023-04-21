@@ -24,6 +24,7 @@ const ScrollSelection = ({ items, onSelect }) => {
         </Pressable>
         {isPickerVisible && (
           <Picker
+            style={styles.picker}
             selectedValue={selectedValue}
             onValueChange={handlePickerSelect}
           >
@@ -45,6 +46,10 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderRadius: 10,
     marginBottom: 5,
+  },
+  picker: {
+    width: "100%",
+    height: 300,
   },
 });
 

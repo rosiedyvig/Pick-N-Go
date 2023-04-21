@@ -11,18 +11,18 @@ import {
   Platform,
 } from "react-native";
 
-import DateTimePicker from "@react-native-community/datetimepicker";
 import { postMatch } from "../API";
 import { TEAMS, LEAGUES, POSITIONS } from "../db";
 import ScrollSelection from "../components/ScrollSelection";
 import DateSelection from "../components/DateSelection";
+import TimeSelection from "../components/TimeSelection";
 
 const AddFixtureModal = ({ navigation }) => {
   const [name, setName] = useState(null);
   const [league, setLeague] = useState("");
   const [date, setDate] = useState(new Date());
   const [kick_off, setKickOff] = useState(new Date());
-  const [meet_up, setMeetUp] = useState("");
+  const [meet_up, setMeetUp] = useState(new Date());
   const [location, setLocation] = useState("");
   const [looking_for, setLookingFor] = useState("");
   const [comments, setComments] = useState("");
@@ -50,67 +50,28 @@ const AddFixtureModal = ({ navigation }) => {
     navigation.navigate("ClubMain");
   });
 
-  //for Date
-  // const [showDatePicker, setShowDatePicker] = useState(false);
-
-  // const handleDateSelect = (event, selectedDate) => {
-  //   const currentDate = selectedDate || date;
-  //   setShowDatePicker(Platform.OS === "ios");
-  //   setDate(currentDate);
-  //   setShowDatePicker(false);
-  // };
-
-  //for Kick Off
-  const [showKickOffPicker, setShowKickOffPicker] = useState(false);
-
-  const handleKickOffSelect = (event, selectedKickOff) => {
-    const currentKickOff = selectedKickOff || kick_off;
-    setShowKickOffPicker(Platform.OS === "ios");
-    setKickOff(currentKickOff);
-    setShowKickOffPicker(false);
-  };
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
       style={styles.container}
     >
-      <ScrollView style={styles.inputContainer}>
+      <ScrollView
+        style={styles.inputContainer}
+        // keyboardShouldPersistTaps="always"
+      >
         <Text>Club Name</Text>
         <ScrollSelection items={TEAMS} onSelect={setName} />
         <Text>League</Text>
         <ScrollSelection items={LEAGUES} onSelect={setLeague} />
+        <Text>What are you looking for</Text>
+        <ScrollSelection items={POSITIONS} onSelect={setLookingFor} />
         <Text>Date</Text>
-        <DateSelection setDate={setDate} />
-
-        <Text>Kick Off Time</Text>
-        <Pressable
-          onPress={() => {
-            setShowKickOffPicker(true);
-          }}
-        >
-          <Text style={styles.input} placeholder={"Add the fixture time"}>
-            {kick_off.toLocaleTimeString()}
-          </Text>
-        </Pressable>
-
-        {showKickOffPicker && (
-          <DateTimePicker
-            value={kick_off}
-            mode="time"
-            display="default"
-            onChange={handleKickOffSelect}
-          />
-        )}
-
+        <DateSelection date={date} setDate={setDate} />
+        <Text>Kick Off</Text>
+        <TimeSelection time={kick_off} setTime={setKickOff} />
         <Text>Meet Up Time</Text>
-        <TextInput
-          style={styles.input}
-          value={meet_up}
-          placeholder="select meet up time"
-          onChangeText={setMeetUp}
-        />
+        <TimeSelection time={meet_up} setTime={setMeetUp} />
         <Text>Location of Pitch</Text>
         <TextInput
           style={styles.input}
@@ -118,8 +79,6 @@ const AddFixtureModal = ({ navigation }) => {
           placeholder="enter the post code of the pitch"
           onChangeText={setLocation}
         />
-        <Text>What are you looking for</Text>
-        <ScrollSelection items={POSITIONS} onSelect={setLookingFor} />
         <Text>Any Comments?</Text>
         <TextInput
           style={styles.input}
@@ -138,19 +97,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   input: {
-    height: 40,
-    margin: 12,
+    // height: 40,
+    // margin: 12,
+    // borderWidth: 1,
+    // padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
     borderWidth: 1,
-    padding: 10,
-  },
-  // dateinput: {
-  //   height: 40,
-  //   margin: 12,
-  //   borderWidth: 1,
-  // },
-  picker: {
-    width: "100%",
-    height: 300,
+    borderColor: "gray",
+    borderRadius: 10,
+    marginBottom: 15,
   },
   inputContainer: {
     paddingHorizontal: 10,

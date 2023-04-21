@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-const DateSelection = ({ setDate }) => {
+const DateSelection = ({ date, setDate }) => {
   const [showPicker, setShowPicker] = useState(false);
-  const [date, doNotUseDate] = useState(new Date());
 
   const handleSelect = (event, selectedDate) => {
     const currentDate = selectedDate || new Date();
