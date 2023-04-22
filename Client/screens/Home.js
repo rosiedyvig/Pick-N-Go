@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, ImageBackground, Image } from "react-native";
 import Button from "../components/Button";
 import Login from "../components/SignUp";
 import SignUp from "../components/Login";
 
+const logo = require("../assets/logo.png");
 const grass = require("../assets/grass.avif");
 
 const Home = ({ navigation }) => {
   return (
     <ImageBackground source={grass} resizeMode="cover" style={styles.image}>
       <View style={styles.container}>
+        <Image style={styles.logo} source={logo}></Image>
         <View style={styles.header}>
           <Text style={styles.text}>Are You A Club or a Player?</Text>
         </View>
@@ -58,6 +60,11 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: "center",
+  },
+  logo: {
+    width: "auto",
+    height: 60,
+    paddingBottom: 80,
   },
 });
 

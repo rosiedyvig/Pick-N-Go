@@ -7,10 +7,13 @@ import {
   Pressable,
   SafeAreaView,
   View,
+  Image,
 } from "react-native";
 import Button from "./Button";
 import SignUpAlert from "./SignUpAlert";
 import { CheckBox } from "@rneui/themed";
+
+const ball = require("../assets/ball.png");
 
 const SignUp = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -45,7 +48,10 @@ const SignUp = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <View style={styles.logoBox} />
+            <View style={styles.logoBox}>
+              <Image style={styles.tinyLogo} source={ball} />
+              <Text style={{ fontSize: 18 }}>Sign Up below: </Text>
+            </View>
             <Text>Are You a club or a player?</Text>
             <View style={styles.checkboxBox}>
               <CheckBox
@@ -139,12 +145,18 @@ const styles = StyleSheet.create({
     width: 300,
   },
   logoBox: {
-    height: 200,
-    borderWidth: 1,
-    borderColor: "gray",
+    marginBottom: 20,
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
   },
   checkboxBox: {
     flexDirection: "row",
+  },
+  tinyLogo: {
+    width: 40,
+    height: 40,
+    marginBottom: 10,
   },
 });
 

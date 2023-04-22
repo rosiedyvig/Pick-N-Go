@@ -17,31 +17,13 @@ const MatchBox = ({ item, setAlertMessage }) => {
       <Pressable onPress={handlePress}>
         <View style={[styles.container, styles.shadowProp]}>
           <View style={[styles.section, styles.section1]}>
-            <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 18,
-              }}
-            >
-              {item.name}
-            </Text>
-            <Text
-              style={{
-                fontWeight: "200",
-                fontSize: 14,
-              }}
-            >
-              {item.leauge}
-            </Text>
+            <Text style={styles.header}>{item.name}</Text>
+            <Text style={styles.subText}>{item.leauge}</Text>
           </View>
           <View style={[styles.section, styles.section2]}>
             <Text style={{ fontWeight: "400" }}>{item.date}</Text>
-            <Text style={{ fontWeight: "bold", fontSize: 18 }}>
-              {item.kick_off}
-            </Text>
-            <Text style={{ fontWeight: "200", fontSize: 14 }}>
-              {item.location}
-            </Text>
+            <Text style={styles.header}>{item.kick_off}</Text>
+            <Text style={styles.subText}>{item.location}</Text>
           </View>
           <View style={[styles.section, styles.section3]}>
             {item.looking_for !== "Opposition" ? (
@@ -76,15 +58,12 @@ const styles = StyleSheet.create({
     borderWidth: 9,
   },
   section: {
-    // flex: 1,
-
     flexWrap: "wrap",
     height: 80,
   },
   section1: {
     flex: 4,
     flexDirection: "column",
-
     justifyContent: "space-around",
   },
   section2: {
@@ -99,15 +78,18 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     alignItems: "center",
-    // borderRadius: 1000,
-    // borderColor: "grey",
-    // borderWidth: 1,
-    // width: 44,
-    // height: 44,
   },
   tinyLogo: {
     width: 40,
     height: 40,
+  },
+  header: {
+    fontWeight: "bold",
+    fontSize: 18,
+  },
+  subText: {
+    fontWeight: "200",
+    fontSize: 14,
   },
 });
 

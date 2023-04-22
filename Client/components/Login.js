@@ -7,8 +7,11 @@ import {
   Pressable,
   SafeAreaView,
   View,
+  Image,
 } from "react-native";
 import Button from "./Button";
+
+const ball = require("../assets/ball.png");
 
 const Login = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -31,7 +34,7 @@ const Login = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <View style={styles.logoBox} />
+            <Image style={styles.tinyLogo} source={ball} />
 
             <View style={styles.InfoBox}>
               <Text style={styles.modalText}>Name</Text>
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 5,
-    textAlign: "center",
+    // textAlign: "center",
   },
   input: {
     paddingHorizontal: 10,
@@ -98,10 +101,15 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: 300,
   },
-  logoBox: {
-    height: 200,
-    borderWidth: 1,
-    borderColor: "gray",
+  // logoBox: {
+  //   height: 200,
+  //   borderWidth: 1,
+  //   borderColor: "gray",
+  // },
+  tinyLogo: {
+    width: 40,
+    height: 40,
+    marginBottom: 10,
   },
 });
 
