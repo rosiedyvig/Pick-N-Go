@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/barlow": "^0.2.3",
     "@react-native-community/checkbox": "^0.5.15",
     "@react-native-community/datetimepicker": "6.7.3",
     "@react-native-community/masked-view": "^0.1.11",
@@ -17,6 +18,7 @@
     "@react-navigation/stack": "^6.3.16",
     "@rneui/themed": "^4.0.0-rc.7",
     "expo": "~48.0.11",
+    "expo-app-loading": "^2.1.1",
     "expo-status-bar": "~1.4.4",
     "install": "^0.13.0",
     "moment": "^2.29.4",
@@ -35,7 +37,8 @@
     "react-native-screens": "~3.20.0",
     "react-native-svg": "^13.9.0",
     "react-native-vector-icons": "^9.2.0",
-    "socket.io-client": "^4.6.1"
+    "socket.io-client": "^4.6.1",
+    "expo-splash-screen": "~0.18.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
