@@ -25,18 +25,21 @@ const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
           <View style={styles.modalView}>
             <Text style={styles.modalTextTitle}>{item.name} need you!</Text>
             <View style={styles.row}>
-              <View style={styles.info}>
-                <Text style={styles.modalText}>Meet Up: {item.meet_up}</Text>
-                <Text style={styles.modalText}>Kick Off: {item.kick_off}</Text>
-                <Text style={styles.modalText}>Location: {item.location}</Text>
+              <View style={styles.modalText}>
+                <Text style={{ fontWeight: "bold", fontSize: 16 }}>
+                  Meet Up: {item.meet_up}
+                </Text>
+                <Text>Kick Off: {item.kick_off}</Text>
+                <Text>Location: {item.location}</Text>
+                <Text style={styles.modalTextComments}>
+                  We are looking for {item.looking_for}. {item.comments}
+                </Text>
               </View>
               <View style={styles.map}>
                 <Map item={item} />
               </View>
             </View>
-            <Text style={styles.modalTextComments}>
-              We are looking for {item.looking_for}. {item.comments}
-            </Text>
+
             <Button title={"Sign Up"} onPress={handleSignUp}></Button>
           </View>
         </View>
@@ -54,6 +57,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
+    marginBottom: 10,
   },
   modalView: {
     margin: 10,
@@ -66,15 +70,13 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    shadowOpacity: 0.9,
+    shadowRadius: 40,
+    elevation: 15,
   },
   map: {
-    borderColor: "red",
-    borderWidth: 2,
     width: 180,
-    height: 150,
+    minHeight: 150,
     marginLeft: 10,
   },
   textStyle: {
@@ -83,18 +85,18 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   modalTextTitle: {
-    marginBottom: 5,
+    marginBottom: 15,
     textAlign: "center",
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 25,
   },
   modalText: {
-    marginBottom: 2,
+    alignItems: "center",
   },
   modalTextComments: {
     marginTop: 15,
-    marginBottom: 5,
-    fontSize: 14,
+    textAlign: "center",
+    width: 140,
   },
 });
 
