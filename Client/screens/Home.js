@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, ImageBackground, Image } from "react-native";
 import Button from "../components/Button";
-import Login from "../components/SignUp";
-import SignUp from "../components/Login";
+import Login from "../components/Login";
+import SignUp from "../components/SignUp";
 
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
@@ -13,7 +13,9 @@ const logo = require("../assets/logo.png");
 const grass = require("../assets/grass.avif");
 
 const Home = ({ navigation }) => {
-  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isPlayer, setIsPlayer] = useState(!false);
+  const [isClub, setIsClub] = useState(!true);
 
   let [fontsLoaded] = useFonts({
     BarlowSemiBold: require("../assets/Barlow,Inter,Overpass/Barlow/Barlow-SemiBold.ttf"),
@@ -51,21 +53,25 @@ const Home = ({ navigation }) => {
             Say goodbye to cancelled fixtures and hello to more Rugby Sundays!
           </Text>
         </View>
-
         <View style={styles.buttoncontainer}>
-          <Button
-            title="Club"
-            onPress={() => navigation.navigate("ClubMain")}
-          />
-          <Button
-            title="Player"
-            onPress={() => navigation.navigate("PlayerMain")}
-          />
-        </View>
-        <View style={styles.buttoncontainer}>
-          <Login setIsLoggedIn={setIsLoggedIn} />
+          <Login setIsLoggedin={setIsLoggedin} />
           <SignUp />
         </View>
+        {isLoggedin && isPlayer ? navigation.navigate("PlayerMain") : null}
+        {isLoggedin && isClub ? navigation.navigate("ClubMain") : null}
+
+        {/* <View style={styles.buttoncontainer}>
+           <Button
+             title="Club"
+             onPress={() => navigation.navigate("ClubMain")}
+           />
+           <Button
+             title="Player"
+             onPress={() => navigation.navigate("PlayerMain")}
+           />
+         </View>
+         <View style={styles.buttoncontainer}> */}
+        {/* </View> */}
       </View>
     </ImageBackground>
   );

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   StyleSheet,
@@ -13,7 +14,7 @@ import Button from "./Button";
 
 const ball = require("../assets/ball.png");
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = ({ setIsLoggedin }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handlePress = () => {
@@ -22,7 +23,8 @@ const Login = ({ setIsLoggedIn }) => {
 
   const handleLogIn = () => {
     console.log("log in button has been pressed from within the modal");
-    setIsLoggedIn(true);
+    setIsLoggedin(true);
+    console.log("please");
   };
 
   const login = "Log In!";
