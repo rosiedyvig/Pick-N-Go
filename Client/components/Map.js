@@ -5,6 +5,8 @@ import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 export default function Map({ item }) {
   const { latitude, longitude } = item;
 
+  const pinColor = "#ff8c00";
+
   return (
     <>
       <MapView
@@ -23,8 +25,11 @@ export default function Map({ item }) {
             latitude: latitude,
             longitude: longitude,
           }}
+          pinColor={pinColor}
         />
       </MapView>
     </>
   );
 }
+
+("#ed7d05");

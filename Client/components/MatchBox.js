@@ -27,7 +27,7 @@ const MatchBox = ({ item, setAlertMessage }) => {
           </View>
           <View style={[styles.section, styles.section3]}>
             {item.looking_for !== "Opposition" ? (
-              <Text>{item.looking_for}</Text>
+              <Text style={styles.header}>{item.looking_for}</Text>
             ) : (
               <>
                 <Image style={styles.tinyLogo} source={team}></Image>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     height: 80,
   },
   section1: {
-    flex: 4,
+    flex: 5,
     flexDirection: "column",
     justifyContent: "space-around",
   },

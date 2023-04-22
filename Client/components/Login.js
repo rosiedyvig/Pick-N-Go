@@ -13,11 +13,16 @@ import Button from "./Button";
 
 const ball = require("../assets/ball.png");
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handlePress = () => {
     setModalVisible(!modalVisible);
+  };
+
+  const handleLogIn = () => {
+    console.log("log in button has been pressed from within the modal");
+    setIsLoggedIn(true);
   };
 
   const login = "Log In!";
@@ -54,7 +59,10 @@ const Login = () => {
               <Button
                 style={styles.button}
                 title={login}
-                onPress={handlePress}
+                onPress={() => {
+                  handlePress();
+                  handleLogIn();
+                }}
               />
             </View>
           </View>

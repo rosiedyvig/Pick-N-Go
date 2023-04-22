@@ -13,6 +13,8 @@ const logo = require("../assets/logo.png");
 const grass = require("../assets/grass.avif");
 
 const Home = ({ navigation }) => {
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+
   let [fontsLoaded] = useFonts({
     BarlowSemiBold: require("../assets/Barlow,Inter,Overpass/Barlow/Barlow-SemiBold.ttf"),
     BarlowRegular: require("../assets/Barlow,Inter,Overpass/Barlow/Barlow-Regular.ttf"),
@@ -61,7 +63,7 @@ const Home = ({ navigation }) => {
           />
         </View>
         <View style={styles.buttoncontainer}>
-          <Login />
+          <Login setIsLoggedIn={setIsLoggedIn} />
           <SignUp />
         </View>
       </View>
