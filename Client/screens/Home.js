@@ -15,7 +15,6 @@ const grass = require("../assets/grass.avif");
 
 const Home = ({ navigation }) => {
   const [isLoggedin, setIsLoggedin] = useState(false);
-  const [isPlayer, setIsPlayer] = useState(false);
   const [isClub, setIsClub] = useState(true);
 
   let [fontsLoaded] = useFonts({
@@ -59,7 +58,7 @@ const Home = ({ navigation }) => {
           <Login setIsLoggedin={setIsLoggedin} />
           <SignUp />
         </View>
-        {isLoggedin && isPlayer ? navigation.navigate("PlayerMain") : null}
+        {isLoggedin && !isClub ? navigation.navigate("PlayerMain") : null}
         {isLoggedin && isClub ? navigation.navigate("ClubMain") : null}
 
         {/* <View style={styles.buttoncontainer}>

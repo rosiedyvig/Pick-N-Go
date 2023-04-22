@@ -67,4 +67,17 @@ const addUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllMatches, addMatch, addUser };
+const getUser = async (req, res) => {
+  const name = req.params.name;
+  try {
+    const data = await User.findOne({ name: name });
+    res.send(data);
+    res.status(200);
+    console.log(data);
+  } catch (e) {
+    res.status(500);
+    res.send(e.messages);
+  }
+};
+
+module.exports = { getAllMatches, addMatch, addUser, getUser };

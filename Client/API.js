@@ -1,8 +1,6 @@
 const serverURL = "http://192.168.0.211:3001";
-//const socketURL = "http://192.168.0.211:3000";
 
-//URL: 192.168.0.211:19008
-
+//MATCHES
 const getAll = async () => {
   try {
     const response = await fetch(serverURL + "/matches");
@@ -29,6 +27,34 @@ const postMatch = async (payload) => {
   }
 };
 
+//USERS
+const findUser = async (details) => {
+  try {
+    const response = await fetch(serverURL + `/user/:${details}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error occurred during network request:", error);
+  }
+};
+
+const postUser = async (payload) => {
+  try {
+    const response = await fetch(serverURL + "/user", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error occurred on the Back End");
+  }
+};
+
+//POSTCODE TO LONG AND LAT
 const getLongLat = async (postcode) => {
   function PCF(str) {
     return str.replace(" ", "%20");
@@ -64,4 +90,4 @@ const getLongLat = async (postcode) => {
   }
 };
 
-module.exports = { getAll, postMatch, getLongLat };
+module.exports = { getAll, postMatch, getLongLat, postUser, findUser };
