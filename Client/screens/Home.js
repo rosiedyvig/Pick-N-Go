@@ -14,7 +14,7 @@ const logo = require("../assets/logo.png");
 const grass = require("../assets/grass.avif");
 
 const Home = ({ navigation }) => {
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(false); //this coulld be removed and instead use somehting about the response from the db being positive or negative.
   const [isClub, setIsClub] = useState(true);
 
   let [fontsLoaded] = useFonts({

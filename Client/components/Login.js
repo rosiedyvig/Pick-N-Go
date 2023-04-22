@@ -1,5 +1,5 @@
 import { useFocusEffect } from "@react-navigation/native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Modal,
   StyleSheet,
@@ -10,6 +10,7 @@ import {
   View,
   Image,
 } from "react-native";
+import { postUser } from "../API";
 import Button from "./Button";
 
 const ball = require("../assets/ball.png");
@@ -29,6 +30,19 @@ const Login = ({ setIsLoggedin }) => {
 
   const login = "Log In!";
 
+  //This should be hooked up with the handleLogIn function.
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const fakeFunction = useCallback(async () => {
+    // const isThisaUser = { //i dont care what the password is because its fake
+    //   name,
+    //   password,
+    // }
+
+    findUser(name);
+  });
+
   return (
     <View>
       <Modal
@@ -47,16 +61,16 @@ const Login = ({ setIsLoggedin }) => {
               <Text style={styles.modalText}>Name</Text>
               <TextInput
                 style={styles.input}
-                // value={comments}
+                value={name}
                 placeholder="name"
-                // onChangeText={setComments}
+                onChangeText={setName}
               />
               <Text style={styles.modalText}>Password</Text>
               <TextInput
                 style={styles.input}
-                // value={comments}
+                value={password}
                 placeholder="password"
-                // onChangeText={setComments}
+                onChangeText={setPassword}
               />
               <Button
                 style={styles.button}
