@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, ImageBackground, Image } from "react-native";
 import Button from "../components/Button";
 import Login from "../components/Login";
+import ImageCarousel from "../components/ImageCarousel";
 import SignUp from "../components/SignUp";
 
 import { useFonts } from "expo-font";
@@ -14,8 +15,8 @@ const grass = require("../assets/grass.avif");
 
 const Home = ({ navigation }) => {
   const [isLoggedin, setIsLoggedin] = useState(false);
-  const [isPlayer, setIsPlayer] = useState(!false);
-  const [isClub, setIsClub] = useState(!true);
+  const [isPlayer, setIsPlayer] = useState(false);
+  const [isClub, setIsClub] = useState(true);
 
   let [fontsLoaded] = useFonts({
     BarlowSemiBold: require("../assets/Barlow,Inter,Overpass/Barlow/Barlow-SemiBold.ttf"),
@@ -41,6 +42,7 @@ const Home = ({ navigation }) => {
     >
       <View style={styles.container}>
         <Image style={styles.logo} source={logo}></Image>
+        <ImageCarousel></ImageCarousel>
         <View style={styles.header}>
           <Text style={[styles.text, { fontWeight: "bold" }]}>
             Keep the game alive with Pick N Go!{" "}
