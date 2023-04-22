@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { View, FlatList, Text, StyleSheet } from "react-native";
+import { View, FlatList, Text, StyleSheet, SafeAreaView } from "react-native";
 import MatchBox from "./MatchBox";
 import { getAll } from "../API";
 import moment from "moment";
@@ -43,7 +43,7 @@ const MatchList = ({ setAlertMessage }) => {
     });
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={formattedFixtures}
         keyExtractor={(item) => item._id}
@@ -53,14 +53,14 @@ const MatchList = ({ setAlertMessage }) => {
         refreshing={isRefreshing}
         onRefresh={handleRefresh}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "teal",
-    flex: 3,
+    // height: 900,
+    flex: 1,
   },
 });
 

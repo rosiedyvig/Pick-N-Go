@@ -25,7 +25,7 @@ const SignUp = () => {
 
   const handleSignUpPress = () => {
     // this works the first time but not again. I need to reset the alert message back to ! which is done in the sign up module.
-    setIsPressed(!isPressed);
+    //setIsPressed(!isPressed);
     setTimeout(() => {
       setModalVisible(!modalVisible);
     }, 1300);

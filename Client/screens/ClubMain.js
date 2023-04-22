@@ -1,22 +1,24 @@
 import React, { useEffect, useState, useContext } from "react";
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet, SafeAreaView, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../components/Button";
 
 import MatchList from "../components/MatchList";
 import SignUpAlert from "../components/SignUpAlert";
 
+const grass = require("../assets/grass.avif");
+
 const ClubMain = ({ alertMessage, setAlertMessage }) => {
   const navigation = useNavigation();
   return (
     <>
-      <View style={styles.container}>
+      <ImageBackground source={grass} resizeMode="cover" style={styles.image}>
         <Button
           title="Add a fixture"
           onPress={() => navigation.navigate("AddFixture")}
         />
-      </View>
-      <MatchList />
+        <MatchList />
+      </ImageBackground>
       {alertMessage === true ? (
         <SignUpAlert
           text={
@@ -30,10 +32,13 @@ const ClubMain = ({ alertMessage, setAlertMessage }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
   button: {
     padding: 10,
+    // flex: 1,
+  },
+  image: {
     flex: 1,
+    justifyContent: "center",
   },
 });
 
