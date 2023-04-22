@@ -1,4 +1,5 @@
 const Match = require("./models/eventSchema");
+const User = require("./models/userSchema");
 
 const getAllMatches = async (req, res) => {
   try {
@@ -40,4 +41,30 @@ const addMatch = async (req, res) => {
   }
 };
 
-module.exports = { getAllMatches, addMatch };
+const addUser = async (req, res) => {
+  const user = req.body;
+  try {
+    if (
+      user.name === "" ||
+      user.password === "" ||
+      typeof user.club == Boolean
+    ) {
+      res.status(400);
+      res.json("Error: some of the inputs were not provided correctly");
+    } else {
+      await User.create({
+        name: user.name,
+        password: user.password,
+        club: user.club,
+      });
+      res.status(201);
+      res.send(user);
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(500);
+    res.send(e.message);
+  }
+};
+
+module.exports = { getAllMatches, addMatch, addUser };
