@@ -27,6 +27,17 @@ const postMatch = async (payload) => {
   }
 };
 
+const deleteMatchfromDB = async (payload) => {
+  try {
+    await fetch(serverURL + "/match", {
+      method: "DELETE",
+    });
+    return true;
+  } catch (e) {
+    console.error("Error occurred during network request:", error);
+  }
+};
+
 //USERS
 const findUser = async (details) => {
   try {
@@ -67,29 +78,33 @@ const getLongLat = async (postcode) => {
     const options = {
       method: "GET",
       headers: {
+        "content-type": "application/octet-stream",
         "X-RapidAPI-Key": "8b2ed7a2a8mshf94a6c1acda4261p1bd64fjsn996641906e7a",
         "X-RapidAPI-Host": "locations-and-postcodes-uk.p.rapidapi.com",
       },
     };
 
-    return (
-      fetch(
-        `https://locations-and-postcodes-uk.p.rapidapi.com/getLocationForPostcode?postcode=${help}`,
-        options
-      )
-        // const result = options.json();
-        // return result;
-        .then((response) => {
-          return response.json();
-        })
-        .then((response) => {
-          //console.log("this is from the API", response);
-          return response;
-        })
-    );
+    return fetch(
+      `https://locations-and-postcodes-uk.p.rapidapi.com/getLocationForPostcode?postcode=${help}`,
+      options
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log("this is from the API", response);
+        return response;
+      });
   } catch (e) {
     console.error("Error occurred on the Back End");
   }
 };
 
-module.exports = { getAll, postMatch, getLongLat, postUser, findUser };
+module.exports = {
+  getAll,
+  postMatch,
+  deleteMatchfromDB,
+  getLongLat,
+  postUser,
+  findUser,
+};

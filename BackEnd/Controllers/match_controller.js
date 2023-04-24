@@ -40,4 +40,20 @@ const addMatch = async (req, res) => {
   }
 };
 
-module.exports = { getAllMatches, addMatch };
+const deleteMatch = async (req, res) => {
+  const match = req.params._id;
+  try {
+    await Match.findByIdAndDelete(match);
+    if (!match) {
+      res.status(404);
+      console.log("Match Not found");
+    }
+    res.send("match deleted");
+  } catch (e) {
+    console.log(e);
+    res.status(500);
+    res.send(e.message);
+  }
+};
+
+module.exports = { getAllMatches, addMatch, deleteMatch };

@@ -5,12 +5,26 @@ import Map from "./Map";
 import PopUp from "./PopUp";
 import styles from "./Details.style";
 
-const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
+const Details = ({
+  item,
+  modalVisible,
+  setModalVisible,
+  setAlertMessage,
+  matchArr,
+  setMatches,
+}) => {
   const [isConfirmed, setConfirmed] = useState(false);
 
   const handleSignUp = () => {
+    console.log("where is my pop up?");
     setAlertMessage(true);
     setConfirmed(true);
+    //this should be deleted from the matchArr now using setMatches
+    // newArr = matchArr.filter((individual) => individual._id !== item._id);
+    //re render the list
+    // setMatches(newArr);
+    //delete from db is avalible if needed - deleteMatchfromDB
+    //add the match to the MyMatches screen
     setTimeout(() => {
       setModalVisible(!modalVisible);
       setConfirmed(false);

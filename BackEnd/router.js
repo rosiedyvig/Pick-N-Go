@@ -5,6 +5,7 @@ const userController = require("./Controllers/user_controller");
 
 router.get("/matches", matchController.getAllMatches);
 router.post("/match", matchController.addMatch);
+router.delete("/match/:_id", matchController.deleteMatch);
 router.get("/user/:name", userController.getUser);
 router.post("/user", userController.addUser);
 

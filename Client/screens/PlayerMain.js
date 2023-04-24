@@ -1,14 +1,15 @@
 import React from "react";
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet, View, Text } from "react-native";
 
 import MatchList from "../components/MatchList";
-
+import MyMatches from "./MyMatches";
 const grass = require("../assets/grass.avif");
 
 const PlayerMain = ({ setAlertMessage }) => {
   return (
     <>
       <ImageBackground source={grass} resizeMode="cover" style={styles.image}>
+        <MyMatches></MyMatches>
         <MatchList setAlertMessage={setAlertMessage} />
       </ImageBackground>
     </>
@@ -16,9 +17,9 @@ const PlayerMain = ({ setAlertMessage }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  // container: {
+  //   flex: 1,
+  // },
   image: {
     flex: 1,
     justifyContent: "center",

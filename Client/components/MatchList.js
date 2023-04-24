@@ -48,7 +48,12 @@ const MatchList = ({ setAlertMessage }) => {
         data={formattedFixtures}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => (
-          <MatchBox item={item} setAlertMessage={setAlertMessage} />
+          <MatchBox
+            item={item}
+            setAlertMessage={setAlertMessage}
+            matchArr={matchArr}
+            setMatches={setMatches}
+          />
         )}
         refreshing={isRefreshing}
         onRefresh={handleRefresh}
