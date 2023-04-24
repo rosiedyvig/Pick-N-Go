@@ -10,38 +10,37 @@ import {
   View,
   Image,
 } from "react-native";
-import { postUser } from "../API";
+import { findUser } from "../API";
 import Button from "./Button";
 
 const ball = require("../assets/ball.png");
 
-const Login = ({ setIsLoggedin }) => {
+const Login = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handlePress = () => {
     setModalVisible(!modalVisible);
   };
 
-  const handleLogIn = () => {
-    console.log("log in button has been pressed from within the modal");
-    setIsLoggedin(true);
-    console.log("please");
+  const handleLogIn = async () => {
+    // setIsLoggedin(true);
+
+    const result = await findUser(name); //here i need to add the conditional
+    console.log(result.club);
+
+    if (result.club === true) {
+      // setIsClub(true);
+      navigation.navigate("ClubMain");
+    }
+    if (result.club === false) {
+      // setIsClub(false);
+      navigation.navigate("PlayerMain");
+    }
   };
 
   const login = "Log In!";
 
-  //This should be hooked up with the handleLogIn function.
   const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-
-  const fakeFunction = useCallback(async () => {
-    // const isThisaUser = { //i dont care what the password is because its fake
-    //   name,
-    //   password,
-    // }
-
-    findUser(name);
-  });
 
   return (
     <View>
@@ -68,9 +67,9 @@ const Login = ({ setIsLoggedin }) => {
               <Text style={styles.modalText}>Password</Text>
               <TextInput
                 style={styles.input}
-                value={password}
+                // value={password}
                 placeholder="password"
-                onChangeText={setPassword}
+                // onChangeText={setPassword}
               />
               <Button
                 style={styles.button}

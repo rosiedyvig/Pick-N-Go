@@ -14,7 +14,7 @@ const logo = require("../assets/logo.png");
 const grass = require("../assets/grass.avif");
 
 const Home = ({ navigation }) => {
-  const [isLoggedin, setIsLoggedin] = useState(false); //this coulld be removed and instead use somehting about the response from the db being positive or negative.
+  const [isLoggedin, setIsLoggedin] = useState(false);
   const [isClub, setIsClub] = useState(true);
 
   let [fontsLoaded] = useFonts({
@@ -55,11 +55,11 @@ const Home = ({ navigation }) => {
           </Text>
         </View>
         <View style={styles.buttoncontainer}>
-          <Login setIsLoggedin={setIsLoggedin} />
+          <Login navigation={navigation} />
           <SignUp />
         </View>
-        {isLoggedin && !isClub ? navigation.navigate("PlayerMain") : null}
-        {isLoggedin && isClub ? navigation.navigate("ClubMain") : null}
+        {/* {isLoggedin && !isClub ? navigation.navigate("PlayerMain") : null}
+        {isLoggedin && isClub ? navigation.navigate("ClubMain") : null} */}
 
         {/* <View style={styles.buttoncontainer}>
            <Button

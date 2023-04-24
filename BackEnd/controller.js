@@ -71,9 +71,10 @@ const getUser = async (req, res) => {
   const name = req.params.name;
   try {
     const data = await User.findOne({ name: name });
-    res.send(data);
+    res.json(data);
     res.status(200);
-    console.log(data);
+    console.log("data", data);
+    return data;
   } catch (e) {
     res.status(500);
     res.send(e.messages);
