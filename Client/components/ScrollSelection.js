@@ -40,16 +40,15 @@ const ScrollSelection = ({ items, onSelect }) => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 15,
     borderWidth: 1,
     borderColor: "gray",
-    borderRadius: 10,
-    marginBottom: 5,
+    borderRadius: 15,
+    marginBottom: 15,
   },
   picker: {
     width: "100%",
-    height: 300,
   },
 });
 

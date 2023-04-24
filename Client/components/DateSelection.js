@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 const DateSelection = ({ date, setDate }) => {
@@ -17,24 +17,30 @@ const DateSelection = ({ date, setDate }) => {
         setShowPicker(true);
       }}
     >
-      <DateTimePicker
-        style={styles.dateinput}
-        value={date}
-        mode="date"
-        display="default"
-        onChange={handleSelect}
-      />
+      <View style={styles.dateinput}>
+        <DateTimePicker
+          style={styles.date}
+          value={date}
+          mode="date"
+          display="default"
+          onChange={handleSelect}
+        />
+      </View>
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   dateinput: {
-    paddingHorizontal: 10,
+    paddingVertical: 5,
     borderWidth: 1,
     borderColor: "gray",
-    borderRadius: 10,
-    marginBottom: 5,
+    borderRadius: 15,
+    marginBottom: 15,
+    flexDirection: "row",
+  },
+  date: {
+    alignSelf: "flex-start",
   },
 });
 

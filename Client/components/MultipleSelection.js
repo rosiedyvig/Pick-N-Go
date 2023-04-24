@@ -33,24 +33,24 @@ const MultipleSelection = ({ items }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <MultiSelect
-          hideTags
+          // hideTags
           items={items}
-          uniqueKey="id"
+          uniqueKey="items"
           onSelectedItemsChange={onSelectedItemsChange}
           selectedItems={selectedItems}
-          selectText="Pick Items"
-          searchInputPlaceholderText="Search Items..."
-          onChangeInput={(text) => console.log(text)}
-          tagRemoveIconColor="#CCC"
-          tagBorderColor="#CCC"
-          tagTextColor="#CCC"
-          selectedItemTextColor="#CCC"
-          selectedItemIconColor="#CCC"
-          itemTextColor="#000"
-          displayKey="name"
-          searchInputStyle={{ color: "#CCC" }}
-          submitButtonColor="#48d22b"
-          submitButtonText="Submit"
+          // selectText="Pick Items"
+          // searchInputPlaceholderText="Search Items..."
+          // onChangeInput={(text) => console.log(text)}
+          // tagRemoveIconColor="#CCC"
+          // tagBorderColor="#CCC"
+          // tagTextColor="#CCC"
+          // selectedItemTextColor="#CCC"
+          // selectedItemIconColor="#CCC"
+          // itemTextColor="#000"
+          displayKey="items"
+          // searchInputStyle={{ color: "#CCC" }}
+          // submitButtonColor="#48d22b"
+          // submitButtonText="Submit"
         />
       </View>
     </SafeAreaView>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 const TimeSelection = ({ time, setTime }) => {
@@ -13,37 +13,32 @@ const TimeSelection = ({ time, setTime }) => {
   };
 
   return (
-    <>
-      {/* <Pressable
-      onPress={() => {
-        setShowPicker(true);
-      }}
-      >
-        <Text style={styles.input} placeholder={"Add the fixture time"}>
-          {time.toLocaleTimeString()}
-        </Text>
-      </Pressable> */}
-
+    <View style={styles.dateinput}>
       {showPicker && (
         <DateTimePicker
-          style={styles.dateinput}
+          style={styles.date}
           value={time}
           mode="time"
           display="default"
           onChange={handleSelect}
         />
       )}
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   dateinput: {
-    paddingHorizontal: 10,
+    paddingVertical: 5,
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 10,
     marginBottom: 5,
+    flexDirection: "row",
+    marginBottom: 15,
+  },
+  date: {
+    alignSelf: "flex-start",
   },
 });
 

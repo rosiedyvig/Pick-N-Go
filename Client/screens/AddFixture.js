@@ -9,6 +9,7 @@ import {
   Alert,
   Pressable,
   KeyboardAvoidingView,
+  keyboardVerticalOffset,
   Platform,
 } from "react-native";
 import { getLongLat } from "../API";
@@ -47,7 +48,6 @@ const AddFixtureModal = ({ navigation }) => {
       comments,
     };
 
-    console.log("inside use effect in the add fixture comp");
     const convertLocation = async () => {
       const answer = await getLongLat(location);
       newMatch.longitude = answer.longitude;
@@ -62,22 +62,16 @@ const AddFixtureModal = ({ navigation }) => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
-      style={styles.container}
+      style={{ flex: 1 }}
+      behavior="padding"
+      enabled
+      keyboardVerticalOffset={100}
     >
-      <View
-        style={styles.inputContainer}
-        nestedScrollEnabled={true}
-        keyboardShouldPersistTaps="always"
-      >
-        {/* <MultipleSelection items={POSITIONS} /> */}
+      <ScrollView style={styles.container}>
         <Text>Club Name</Text>
         <ScrollSelection items={TEAMS} onSelect={setName} />
         <Text>League</Text>
         <ScrollSelection items={LEAGUES} onSelect={setLeague} />
-        <Text>What are you looking for</Text>
-        <ScrollSelection items={POSITIONS} onSelect={setLookingFor} />
         <Text>Date</Text>
         <DateSelection date={date} setDate={setDate} />
         <Text>Kick Off</Text>
@@ -91,37 +85,36 @@ const AddFixtureModal = ({ navigation }) => {
           placeholder="enter the post code of the pitch"
           onChangeText={setLocation}
         />
+        <Text>What are you looking for</Text>
+        <ScrollSelection items={POSITIONS} onSelect={setLookingFor} />
         <Text>Any Comments?</Text>
         <TextInput
           style={styles.input}
           value={comments}
           placeholder="do you have a ref already? Can you promise a thank you pint?"
           onChangeText={setComments}
+          multiline={true}
         />
         <Button title="Add a fixture" onPress={handleSubmit} />
-      </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
     flex: 1,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
   },
   input: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 15,
     borderWidth: 1,
     borderColor: "gray",
-    borderRadius: 10,
+    borderRadius: 15,
     marginBottom: 15,
-  },
-  inputContainer: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-    borderWidth: 1,
-    borderColor: "gray",
-    borderRadius: 10,
   },
 });
 
