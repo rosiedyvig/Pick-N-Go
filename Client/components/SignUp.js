@@ -6,21 +6,27 @@ import {
   TextInput,
   Pressable,
   SafeAreaView,
+  ScrollView,
   View,
   Image,
+  KeyboardAvoidingView,
 } from "react-native";
 import Button from "./Button";
 import SignUpAlert from "./SignUpAlert";
 import { CheckBox } from "@rneui/themed";
+import { postUser } from "../API";
 
 const ball = require("../assets/ball.png");
 
 const SignUp = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [isClub, setisClub] = useState(true);
-  const [isPlayer, setisPlayer] = useState(false);
-  const [isSignedUp, setSignUpMessage] = useState(true);
+  const [club, setisClub] = useState(true);
+  // const [isPlayer, setisPlayer] = useState(false);
+  // const [isSignedUp, setSignUpMessage] = useState(true);
   const [isPressed, setIsPressed] = useState(false);
+
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
 
   const handlePress = () => {
     setModalVisible(!modalVisible);
@@ -29,9 +35,21 @@ const SignUp = () => {
   const handleSignUpPress = () => {
     // this works the first time but not again. I need to reset the alert message back to ! which is done in the sign up module.
     //setIsPressed(!isPressed);
-    setTimeout(() => {
-      setModalVisible(!modalVisible);
-    }, 1300);
+    // setTimeout(() => {
+    //   setModalVisible(!modalVisible);
+    // }, 1300);
+
+    setModalVisible(!modalVisible);
+    const newUser = {
+      club,
+      name,
+      password,
+    };
+
+    postUser(newUser);
+
+    setName("");
+    setPassword("");
   };
 
   const login = "Sign Up!";
@@ -47,60 +65,60 @@ const SignUp = () => {
         }}
       >
         <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={styles.logoBox}>
-              <Image style={styles.tinyLogo} source={ball} />
-              <Text style={{ fontSize: 18 }}>Sign Up below: </Text>
-            </View>
-            <Text>Are You a club or a player?</Text>
-            <View style={styles.checkboxBox}>
-              <CheckBox
-                // center
-                title="Club"
-                checked={isClub}
-                onPress={() => {
-                  setisClub(!isClub);
-                  setisPlayer(!isPlayer);
-                }}
-              />
-              <CheckBox
-                // center
-                title="Player"
-                checked={isPlayer}
-                onPress={() => {
-                  setisPlayer(!isPlayer);
-                  setisClub(!isClub);
-                }}
-              />
-            </View>
-            <View style={styles.InfoBox}>
-              <Text style={styles.modalText}>Name</Text>
-              <TextInput
-                style={styles.input}
-                // value={comments}
-                placeholder="name"
-                // onChangeText={setComments}
-              />
-              <Text style={styles.modalText}>Password</Text>
-              <TextInput
-                style={styles.input}
-                // value={comments}
-                placeholder="password"
-                // onChangeText={setComments}
-              />
-              <Button
-                style={styles.button}
-                title={login}
-                onPress={handleSignUpPress}
-              />
-              {isPressed === true ? (
-                <SignUpAlert
-                  text={"You have Signed Up!! Congratulations 👏"}
-                  setAlertMessage={setSignUpMessage}
+          <ScrollView automaticallyAdjustContentInsets={true}>
+            <View style={styles.modalView}>
+              <View style={styles.logoBox}>
+                <Image style={styles.tinyLogo} source={ball} />
+                <Text style={{ fontSize: 18 }}>Sign Up below: </Text>
+              </View>
+              <Text>Are You a club or a player?</Text>
+              <View style={styles.checkboxBox}>
+                <CheckBox
+                  // center
+                  title="Club"
+                  checked={club}
+                  onPress={() => {
+                    setisClub(!club);
+                  }}
                 />
-              ) : null}
+                <CheckBox
+                  // center
+                  title="Player"
+                  checked={!club}
+                  onPress={() => {
+                    setisClub(!club);
+                  }}
+                />
+              </View>
+              <View style={styles.InfoBox}>
+                <Text style={styles.modalText}>Name</Text>
+                <TextInput
+                  style={styles.input}
+                  value={name}
+                  placeholder="name"
+                  onChangeText={setName}
+                />
+                <Text style={styles.modalText}>Password</Text>
+                <TextInput
+                  style={styles.input}
+                  value={password}
+                  placeholder="password"
+                  onChangeText={setPassword}
+                />
+                <Button
+                  style={styles.button}
+                  title={login}
+                  onPress={handleSignUpPress}
+                />
+                {isPressed === true ? (
+                  <SignUpAlert
+                    text={"You have Signed Up!! Congratulations 👏"}
+                    setAlertMessage={setSignUpMessage}
+                  />
+                ) : null}
+              </View>
             </View>
-          </View>
+          </ScrollView>
         </View>
       </Modal>
 
@@ -130,6 +148,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
+    marginTop: 170,
   },
   modalText: {
     marginBottom: 5,
@@ -158,6 +177,9 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 10,
   },
+  // container: {
+  //   flex: 1,
+  // },
 });
 
 export default SignUp;
