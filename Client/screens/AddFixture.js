@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import {
   ScrollView,
+  View,
   Text,
   TextInput,
   Button,
@@ -65,10 +66,10 @@ const AddFixtureModal = ({ navigation }) => {
       keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
       style={styles.container}
     >
-      <ScrollView
+      <View
         style={styles.inputContainer}
         nestedScrollEnabled={true}
-        // keyboardShouldPersistTaps="always"
+        keyboardShouldPersistTaps="always"
       >
         {/* <MultipleSelection items={POSITIONS} /> */}
         <Text>Club Name</Text>
@@ -98,7 +99,7 @@ const AddFixtureModal = ({ navigation }) => {
           onChangeText={setComments}
         />
         <Button title="Add a fixture" onPress={handleSubmit} />
-      </ScrollView>
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -108,10 +109,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   input: {
-    // height: 40,
-    // margin: 12,
-    // borderWidth: 1,
-    // padding: 10,
     paddingHorizontal: 10,
     paddingVertical: 10,
     borderWidth: 1,

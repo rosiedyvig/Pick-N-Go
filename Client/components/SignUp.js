@@ -74,52 +74,55 @@ const SignUp = () => {
           }}
         >
           <View style={styles.centeredView}>
-            {/* <ScrollView automaticallyAdjustContentInsets={true}> */}
-            <View style={styles.modalView}>
-              <View style={styles.logoBox}>
-                <Image style={styles.tinyLogo} source={ball} />
-                <Text style={{ fontSize: 18 }}>Sign Up below: </Text>
+            <KeyboardAvoidingView behavior="padding" style={styles.container}>
+              {/* <ScrollView automaticallyAdjustContentInsets={true}> */}
+              <View style={styles.modalView}>
+                <View style={styles.logoBox}>
+                  <Image style={styles.tinyLogo} source={ball} />
+                  <Text style={{ fontSize: 18 }}>Sign Up below: </Text>
+                </View>
+                <Text>Are You a club or a player?</Text>
+                <View style={styles.checkboxBox}>
+                  <CheckBox
+                    title="Club"
+                    checked={club}
+                    onPress={() => {
+                      setisClub(!club);
+                    }}
+                  />
+                  <CheckBox
+                    title="Player"
+                    checked={!club}
+                    onPress={() => {
+                      setisClub(!club);
+                    }}
+                  />
+                </View>
+                <View style={styles.InfoBox}>
+                  <Text style={styles.modalText}>Name</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={name}
+                    placeholder="name"
+                    onChangeText={setName}
+                  />
+                  <Text style={styles.modalText}>Password</Text>
+                  <TextInput
+                    style={styles.input}
+                    secureTextEntry={true}
+                    value={password}
+                    placeholder="password"
+                    onChangeText={setPassword}
+                  />
+                  <Button
+                    style={styles.button}
+                    title={login}
+                    onPress={handleSignUpPress}
+                  />
+                </View>
               </View>
-              <Text>Are You a club or a player?</Text>
-              <View style={styles.checkboxBox}>
-                <CheckBox
-                  title="Club"
-                  checked={club}
-                  onPress={() => {
-                    setisClub(!club);
-                  }}
-                />
-                <CheckBox
-                  title="Player"
-                  checked={!club}
-                  onPress={() => {
-                    setisClub(!club);
-                  }}
-                />
-              </View>
-              <View style={styles.InfoBox}>
-                <Text style={styles.modalText}>Name</Text>
-                <TextInput
-                  style={styles.input}
-                  value={name}
-                  placeholder="name"
-                  onChangeText={setName}
-                />
-                <Text style={styles.modalText}>Password</Text>
-                <TextInput
-                  style={styles.input}
-                  value={password}
-                  placeholder="password"
-                  onChangeText={setPassword}
-                />
-                <Button
-                  style={styles.button}
-                  title={login}
-                  onPress={handleSignUpPress}
-                />
-              </View>
-            </View>
-            {/* </ScrollView> */}
+              {/* </ScrollView> */}
+            </KeyboardAvoidingView>
           </View>
         </TouchableWithoutFeedback>
       </Modal>
@@ -133,6 +136,9 @@ const SignUp = () => {
 };
 
 const styles = StyleSheet.create({
+  contaniner: {
+    flex: 1,
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",

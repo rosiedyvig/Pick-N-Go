@@ -8,6 +8,7 @@ import {
   Alert,
   Image,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView,
 } from "react-native";
 import { findUser } from "../API";
 import Button from "./Button";
@@ -29,6 +30,11 @@ const Login = ({ navigation }) => {
       return;
     }
     const result = await findUser(name);
+    if (result == null) {
+      Alert.alert("User not found");
+      setName("");
+      return;
+    }
     if (result.club === true) {
       navigation.navigate("ClubMain");
     }
@@ -48,36 +54,39 @@ const Login = ({ navigation }) => {
             setModalVisible(!modalVisible);
           }}
         >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Image style={styles.tinyLogo} source={ball} />
+          <KeyboardAvoidingView behavior="padding" style={styles.container}>
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <Image style={styles.tinyLogo} source={ball} />
 
-              <View style={styles.InfoBox}>
-                <Text style={styles.modalText}>Name</Text>
-                <TextInput
-                  style={styles.input}
-                  value={name}
-                  placeholder="name"
-                  onChangeText={setName}
-                />
-                <Text style={styles.modalText}>Password</Text>
-                <TextInput
-                  style={styles.input}
-                  // value={password}
-                  placeholder="password"
-                  // onChangeText={setPassword}
-                />
-                <Button
-                  style={styles.button}
-                  title={login}
-                  onPress={() => {
-                    handlePress();
-                    handleLogIn();
-                  }}
-                />
+                <View style={styles.InfoBox}>
+                  <Text style={styles.modalText}>Name</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={name}
+                    placeholder="name"
+                    onChangeText={setName}
+                  />
+                  <Text style={styles.modalText}>Password</Text>
+                  <TextInput
+                    style={styles.input}
+                    secureTextEntry={true}
+                    // value={password}
+                    placeholder="password"
+                    // onChangeText={setPassword}
+                  />
+                  <Button
+                    style={styles.button}
+                    title={login}
+                    onPress={() => {
+                      handlePress();
+                      handleLogIn();
+                    }}
+                  />
+                </View>
               </View>
             </View>
-          </View>
+          </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
       </Modal>
 
@@ -87,6 +96,9 @@ const Login = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
