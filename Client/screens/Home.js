@@ -14,9 +14,6 @@ const logo = require("../assets/logo.png");
 const grass = require("../assets/grass.avif");
 
 const Home = ({ navigation }) => {
-  const [isLoggedin, setIsLoggedin] = useState(false);
-  const [isClub, setIsClub] = useState(true);
-
   let [fontsLoaded] = useFonts({
     BarlowSemiBold: require("../assets/Barlow,Inter,Overpass/Barlow/Barlow-SemiBold.ttf"),
     BarlowRegular: require("../assets/Barlow,Inter,Overpass/Barlow/Barlow-Regular.ttf"),
@@ -57,9 +54,7 @@ const Home = ({ navigation }) => {
             Say goodbye to cancelled fixtures and hello to more Rugby Sundays!
           </Text>
         </View>
-        {/* <View style={styles.header}> */}
         <ImageCarousel></ImageCarousel>
-        {/* </View> */}
       </View>
     </ImageBackground>
   );
@@ -88,10 +83,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "black",
     paddingVertical: 10,
-
-    // alignItems: "center",
-    // justifyContent: "center",
-    // alignSelf: "center",
     textAlign: "center",
   },
   image: {
@@ -102,7 +93,6 @@ const styles = StyleSheet.create({
     width: "auto",
     height: 60,
     paddingBottom: 80,
-    // marginBottom: 15,
   },
 });
 

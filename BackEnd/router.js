@@ -1,10 +1,11 @@
 const { Router } = require("express");
 const router = Router();
-const controller = require("./controller");
+const matchController = require("./Controllers/match_controller");
+const userController = require("./Controllers/user_controller");
 
-router.get("/matches", controller.getAllMatches);
-router.post("/match", controller.addMatch);
-router.get("/user/:name", controller.getUser);
-router.post("/user", controller.addUser);
+router.get("/matches", matchController.getAllMatches);
+router.post("/match", matchController.addMatch);
+router.get("/user/:name", userController.getUser);
+router.post("/user", userController.addUser);
 
 module.exports = router;
