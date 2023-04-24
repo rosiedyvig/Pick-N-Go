@@ -1,16 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import {
   ScrollView,
-  View,
   Text,
   TextInput,
   Button,
   StyleSheet,
   Alert,
-  Pressable,
   KeyboardAvoidingView,
-  keyboardVerticalOffset,
-  Platform,
 } from "react-native";
 import { getLongLat } from "../API";
 
@@ -19,9 +15,8 @@ import { TEAMS, LEAGUES, POSITIONS } from "../db";
 import ScrollSelection from "../components/ScrollSelection";
 import DateSelection from "../components/DateSelection";
 import TimeSelection from "../components/TimeSelection";
-import MultipleSelection from "../components/MultipleSelection";
 
-const AddFixtureModal = ({ navigation }) => {
+const AddFixture = ({ navigation }) => {
   const [name, setName] = useState("");
   const [league, setLeague] = useState("");
   const [date, setDate] = useState(new Date());
@@ -118,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddFixtureModal;
+export default AddFixture;

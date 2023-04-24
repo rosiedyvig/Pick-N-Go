@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Modal, Text, View, Pressable, StyleSheet } from "react-native";
+import { Modal, Text, View, Pressable } from "react-native";
 import Button from "./Button";
 import Map from "./Map";
 import PopUp from "./PopUp";
+import styles from "./Details.style";
 
 const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
   const [isConfirmed, setConfirmed] = useState(false);
@@ -13,7 +14,7 @@ const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
     setTimeout(() => {
       setModalVisible(!modalVisible);
       setConfirmed(false);
-    }, 2000);
+    }, 2500);
   };
 
   return (
@@ -64,57 +65,5 @@ const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  row: {
-    flexDirection: "row",
-    marginBottom: 10,
-  },
-  modalView: {
-    margin: 10,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 15,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.9,
-    shadowRadius: 40,
-    elevation: 15,
-  },
-  map: {
-    width: 180,
-    minHeight: 150,
-    marginLeft: 10,
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalTextTitle: {
-    marginBottom: 15,
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 25,
-  },
-  modalText: {
-    alignItems: "center",
-  },
-  modalTextComments: {
-    marginTop: 15,
-    textAlign: "center",
-    width: 140,
-  },
-});
 
 export default Details;

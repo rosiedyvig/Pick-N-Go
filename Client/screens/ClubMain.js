@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { View, StyleSheet, SafeAreaView, ImageBackground } from "react-native";
+import { View, StyleSheet, ImageBackground, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../components/Button";
 
@@ -9,6 +9,7 @@ import SignUpAlert from "../components/SignUpAlert";
 const grass = require("../assets/grass.avif");
 
 const ClubMain = ({ alertMessage, setAlertMessage }) => {
+  // const { isUserName, isUserClub } = route.params;
   const navigation = useNavigation();
   return (
     <>
@@ -17,6 +18,7 @@ const ClubMain = ({ alertMessage, setAlertMessage }) => {
           title="Add a fixture"
           onPress={() => navigation.navigate("AddFixture")}
         />
+
         <MatchList />
       </ImageBackground>
       {alertMessage === true ? (
@@ -34,7 +36,6 @@ const ClubMain = ({ alertMessage, setAlertMessage }) => {
 const styles = StyleSheet.create({
   button: {
     padding: 10,
-    // flex: 1,
   },
   image: {
     flex: 1,
