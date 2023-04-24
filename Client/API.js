@@ -30,8 +30,10 @@ const postMatch = async (payload) => {
 //USERS
 const findUser = async (details) => {
   try {
-    const response = await fetch(serverURL + `/user/:${details}`);
+    //console.log("details are", details);
+    const response = await fetch(serverURL + `/user/${details}`);
     const data = await response.json();
+    //console.log(data);
     return data;
   } catch (error) {
     console.error("Error occurred during network request:", error);

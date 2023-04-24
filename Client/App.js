@@ -54,7 +54,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-const GoeAPIKey = "AIzaSyB6tZVptLtyeElFe5zay6JKTM7SRmenaZ4";
-//Use this key in your application by passing it with the key=API_KEY parameter.
-const GoogleAPIKey = "AIzaSyAuRZGRoi6srC-yxDAhKSGCWlOBgK295Bk";

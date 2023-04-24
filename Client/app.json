@@ -14,7 +14,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "config.googleMapsApiKey": "AIzaSyAjYgfWupgcjInkjS6GrH6_vfQq4z3Dnp8"
+      "config.googleMapsApiKey": "process.env.REACT_APP_API_KEY"
     },
     "android": {
       "adaptiveIcon": {
