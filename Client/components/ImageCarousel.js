@@ -12,7 +12,7 @@ const images = [
 
 const BackgroundCarousel = () => {
   return (
-    <View style={{ height: 200 }}>
+    <View style={{ height: 250 }}>
       <ScrollView horizontal pagingEnabled>
         {images.map((image, i) => (
           <Image

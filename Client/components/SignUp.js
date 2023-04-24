@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  Pressable,
+  TouchableWithoutFeedback,
   SafeAreaView,
   ScrollView,
   View,
@@ -68,8 +68,13 @@ const SignUp = () => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={styles.centeredView}>
-          <ScrollView automaticallyAdjustContentInsets={true}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            {/* <ScrollView automaticallyAdjustContentInsets={true}> */}
             <View style={styles.modalView}>
               <View style={styles.logoBox}>
                 <Image style={styles.tinyLogo} source={ball} />
@@ -114,8 +119,9 @@ const SignUp = () => {
                 />
               </View>
             </View>
-          </ScrollView>
-        </View>
+            {/* </ScrollView> */}
+          </View>
+        </TouchableWithoutFeedback>
       </Modal>
 
       <Button title={login} onPress={handlePress} />
@@ -147,7 +153,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    marginTop: 170,
+    // marginTop: 170,
   },
   modalText: {
     marginBottom: 5,

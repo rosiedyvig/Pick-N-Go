@@ -41,7 +41,10 @@ const Home = ({ navigation }) => {
     >
       <View style={styles.container}>
         <Image style={styles.logo} source={logo}></Image>
-        <ImageCarousel></ImageCarousel>
+        <View style={styles.buttoncontainer}>
+          <Login navigation={navigation} />
+          <SignUp />
+        </View>
         <View style={styles.header}>
           <Text style={[styles.text, { fontWeight: "bold" }]}>
             Keep the game alive with Pick N Go!{" "}
@@ -54,10 +57,9 @@ const Home = ({ navigation }) => {
             Say goodbye to cancelled fixtures and hello to more Rugby Sundays!
           </Text>
         </View>
-        <View style={styles.buttoncontainer}>
-          <Login navigation={navigation} />
-          <SignUp />
-        </View>
+        {/* <View style={styles.header}> */}
+        <ImageCarousel></ImageCarousel>
+        {/* </View> */}
       </View>
     </ImageBackground>
   );
@@ -70,6 +72,7 @@ const styles = StyleSheet.create({
   buttoncontainer: {
     flexDirection: "row",
     justifyContent: "space-around",
+    marginTop: 15,
   },
   header: {
     marginVertical: 20,

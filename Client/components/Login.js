@@ -1,14 +1,13 @@
-import { useFocusEffect } from "@react-navigation/native";
 import React, { useState, useEffect, useCallback } from "react";
 import {
   Modal,
   StyleSheet,
   Text,
   TextInput,
-  Pressable,
-  SafeAreaView,
   View,
+  Alert,
   Image,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { findUser } from "../API";
 import Button from "./Button";
@@ -17,14 +16,19 @@ const ball = require("../assets/ball.png");
 
 const Login = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [name, setName] = useState("");
 
   const handlePress = () => {
     setModalVisible(!modalVisible);
   };
 
   const handleLogIn = async () => {
-    const result = await findUser(name); //here i need to add the conditional
+    if (name === "") {
+      Alert.alert("Please fill in all your details");
 
+      return;
+    }
+    const result = await findUser(name);
     if (result.club === true) {
       navigation.navigate("ClubMain");
     }
@@ -36,48 +40,45 @@ const Login = ({ navigation }) => {
 
   const login = "Log In!";
 
-  const [name, setName] = useState("");
-
   return (
     <View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Image style={styles.tinyLogo} source={ball} />
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Image style={styles.tinyLogo} source={ball} />
 
-            <View style={styles.InfoBox}>
-              <Text style={styles.modalText}>Name</Text>
-              <TextInput
-                style={styles.input}
-                value={name}
-                placeholder="name"
-                onChangeText={setName}
-              />
-              <Text style={styles.modalText}>Password</Text>
-              <TextInput
-                style={styles.input}
-                // value={password}
-                placeholder="password"
-                // onChangeText={setPassword}
-              />
-              <Button
-                style={styles.button}
-                title={login}
-                onPress={() => {
-                  handlePress();
-                  handleLogIn();
-                }}
-              />
+              <View style={styles.InfoBox}>
+                <Text style={styles.modalText}>Name</Text>
+                <TextInput
+                  style={styles.input}
+                  value={name}
+                  placeholder="name"
+                  onChangeText={setName}
+                />
+                <Text style={styles.modalText}>Password</Text>
+                <TextInput
+                  style={styles.input}
+                  // value={password}
+                  placeholder="password"
+                  // onChangeText={setPassword}
+                />
+                <Button
+                  style={styles.button}
+                  title={login}
+                  onPress={() => {
+                    handlePress();
+                    handleLogIn();
+                  }}
+                />
+              </View>
             </View>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </Modal>
 
       <Button title={login} onPress={handlePress} />
@@ -109,7 +110,6 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 5,
-    // textAlign: "center",
   },
   input: {
     paddingHorizontal: 10,
@@ -120,11 +120,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: 300,
   },
-  // logoBox: {
-  //   height: 200,
-  //   borderWidth: 1,
-  //   borderColor: "gray",
-  // },
   tinyLogo: {
     width: 40,
     height: 40,

@@ -43,9 +43,11 @@ const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
                   We are looking for {item.looking_for}. {item.comments}
                 </Text>
               </View>
-              <View style={styles.map}>
-                <Map item={item} />
-              </View>
+              <Pressable onPress={() => {}}>
+                <View style={styles.map}>
+                  <Map item={item} />
+                </View>
+              </Pressable>
             </View>
 
             <Button title={"Sign Up"} onPress={handleSignUp}></Button>

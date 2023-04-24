@@ -9,7 +9,6 @@ const MatchBox = ({ item, setAlertMessage }) => {
 
   const handlePress = () => {
     setModalVisible(true);
-    console.log("inside press of the box");
   };
 
   return (
