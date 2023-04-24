@@ -4,10 +4,6 @@ import { Modal, Text, View, Pressable, StyleSheet } from "react-native";
 const PopUp = ({ text }) => {
   const [alertVisible, setAlertVisible] = useState(true);
 
-  // const resetAlertMessage = () => {
-  //   setAlertMessage(!alertMessage);
-  // };
-
   return (
     <Modal
       animationType="slide"
@@ -15,7 +11,6 @@ const PopUp = ({ text }) => {
       visible={alertVisible}
       onRequestClose={() => {
         setAlertVisible(!alertVisible);
-        // resetAlertMessage();
       }}
     >
       <Pressable

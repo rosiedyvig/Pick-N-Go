@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import {
   Modal,
   StyleSheet,
@@ -18,9 +18,6 @@ const ball = require("../assets/ball.png");
 const Login = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState("");
-
-  // const [isUserName, setUserName] = useState("");
-  // const [isUserClub, setUserClub] = useState(false);
 
   const handlePress = () => {
     setModalVisible(!modalVisible);
@@ -74,9 +71,7 @@ const Login = ({ navigation }) => {
                   <TextInput
                     style={styles.input}
                     secureTextEntry={true}
-                    // value={password}
                     placeholder="password"
-                    // onChangeText={setPassword}
                   />
                   <Button
                     style={styles.button}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 const TimeSelection = ({ time, setTime }) => {
@@ -9,7 +9,6 @@ const TimeSelection = ({ time, setTime }) => {
     const current = selectedTime || time;
     setShowPicker(Platform.OS === "ios");
     setTime(current);
-    //setShowPicker(false);
   };
 
   return (

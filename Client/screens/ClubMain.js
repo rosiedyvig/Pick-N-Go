@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import { View, StyleSheet, ImageBackground, Text } from "react-native";
+import React from "react";
+import { StyleSheet, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../components/Button";
 
@@ -9,7 +9,6 @@ import SignUpAlert from "../components/SignUpAlert";
 const grass = require("../assets/grass.avif");
 
 const ClubMain = ({ alertMessage, setAlertMessage }) => {
-  // const { isUserName, isUserClub } = route.params;
   const navigation = useNavigation();
   return (
     <>

@@ -5,8 +5,6 @@ import {
   Text,
   TextInput,
   TouchableWithoutFeedback,
-  SafeAreaView,
-  ScrollView,
   View,
   Image,
   Alert,
@@ -39,7 +37,6 @@ const SignUp = () => {
     }
     setSignedUp(true);
     setTimeout(() => {
-      //setModalVisible(!modalVisible);
       setSignedUp(false);
     }, 2500);
 
@@ -75,7 +72,6 @@ const SignUp = () => {
         >
           <View style={styles.centeredView}>
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
-              {/* <ScrollView automaticallyAdjustContentInsets={true}> */}
               <View style={styles.modalView}>
                 <View style={styles.logoBox}>
                   <Image style={styles.tinyLogo} source={ball} />
@@ -121,7 +117,6 @@ const SignUp = () => {
                   />
                 </View>
               </View>
-              {/* </ScrollView> */}
             </KeyboardAvoidingView>
           </View>
         </TouchableWithoutFeedback>
@@ -159,7 +154,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    // marginTop: 170,
   },
   modalText: {
     marginBottom: 5,
@@ -188,9 +182,6 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 10,
   },
-  // container: {
-  //   flex: 1,
-  // },
 });
 
 export default SignUp;

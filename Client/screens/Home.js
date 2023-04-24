@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback } from "react";
 import { View, Text, StyleSheet, ImageBackground, Image } from "react-native";
-import Button from "../components/Button";
 import Login from "../components/Login";
 import ImageCarousel from "../components/ImageCarousel";
 import SignUp from "../components/SignUp";

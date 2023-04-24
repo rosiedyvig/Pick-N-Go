@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 
 export default function Map({ item }) {
@@ -31,5 +30,3 @@ export default function Map({ item }) {
     </>
   );
 }
-
-("#ed7d05");

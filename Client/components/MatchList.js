@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { View, FlatList, Text, StyleSheet, SafeAreaView } from "react-native";
+import { FlatList, StyleSheet, SafeAreaView } from "react-native";
 import MatchBox from "./MatchBox";
 import { getAll } from "../API";
 import moment from "moment";
@@ -59,7 +59,6 @@ const MatchList = ({ setAlertMessage }) => {
 
 const styles = StyleSheet.create({
   container: {
-    // height: 900,
     flex: 1,
   },
 });
