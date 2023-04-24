@@ -30,7 +30,9 @@ const MatchBox = ({ item, setAlertMessage }) => {
               <Text style={styles.header}>{item.looking_for}</Text>
             ) : (
               <>
+                <Text style={styles.tinyText}>Whole</Text>
                 <Image style={styles.tinyLogo} source={team}></Image>
+                <Text style={styles.tinyText}>Team</Text>
               </>
             )}
           </View>
@@ -90,6 +92,9 @@ const styles = StyleSheet.create({
   subText: {
     fontWeight: "200",
     fontSize: 14,
+  },
+  tinyText: {
+    fontSize: 7,
   },
 });
 

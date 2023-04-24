@@ -23,19 +23,15 @@ const Login = ({ navigation }) => {
   };
 
   const handleLogIn = async () => {
-    // setIsLoggedin(true);
-
     const result = await findUser(name); //here i need to add the conditional
-    console.log(result.club);
 
     if (result.club === true) {
-      // setIsClub(true);
       navigation.navigate("ClubMain");
     }
     if (result.club === false) {
-      // setIsClub(false);
       navigation.navigate("PlayerMain");
     }
+    setName("");
   };
 
   const login = "Log In!";

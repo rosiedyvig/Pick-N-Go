@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Text, View, Pressable, StyleSheet } from "react-native";
 import Button from "./Button";
 import Map from "./Map";
+import PopUp from "./PopUp";
 
 const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
+  const [isConfirmed, setConfirmed] = useState(false);
+
   const handleSignUp = () => {
     setAlertMessage(true);
+    setConfirmed(true);
+    setTimeout(() => {
+      setModalVisible(!modalVisible);
+      setConfirmed(false);
+    }, 2000);
   };
 
   return (
@@ -42,6 +50,13 @@ const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
 
             <Button title={"Sign Up"} onPress={handleSignUp}></Button>
           </View>
+          {isConfirmed ? (
+            <PopUp
+              text={
+                "Confirmed! Now get your boots on, its time to save the day!"
+              }
+            ></PopUp>
+          ) : null}
         </View>
       </Pressable>
     </Modal>

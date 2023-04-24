@@ -58,21 +58,6 @@ const Home = ({ navigation }) => {
           <Login navigation={navigation} />
           <SignUp />
         </View>
-        {/* {isLoggedin && !isClub ? navigation.navigate("PlayerMain") : null}
-        {isLoggedin && isClub ? navigation.navigate("ClubMain") : null} */}
-
-        {/* <View style={styles.buttoncontainer}>
-           <Button
-             title="Club"
-             onPress={() => navigation.navigate("ClubMain")}
-           />
-           <Button
-             title="Player"
-             onPress={() => navigation.navigate("PlayerMain")}
-           />
-         </View>
-         <View style={styles.buttoncontainer}> */}
-        {/* </View> */}
       </View>
     </ImageBackground>
   );

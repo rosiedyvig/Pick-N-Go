@@ -9,10 +9,11 @@ import {
   ScrollView,
   View,
   Image,
+  Alert,
   KeyboardAvoidingView,
 } from "react-native";
 import Button from "./Button";
-import SignUpAlert from "./SignUpAlert";
+import PopUp from "./PopUp";
 import { CheckBox } from "@rneui/themed";
 import { postUser } from "../API";
 
@@ -21,9 +22,8 @@ const ball = require("../assets/ball.png");
 const SignUp = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [club, setisClub] = useState(true);
-  // const [isPlayer, setisPlayer] = useState(false);
-  // const [isSignedUp, setSignUpMessage] = useState(true);
-  const [isPressed, setIsPressed] = useState(false);
+
+  const [isSignedUp, setSignedUp] = useState(false);
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -33,11 +33,15 @@ const SignUp = () => {
   };
 
   const handleSignUpPress = () => {
-    // this works the first time but not again. I need to reset the alert message back to ! which is done in the sign up module.
-    //setIsPressed(!isPressed);
-    // setTimeout(() => {
-    //   setModalVisible(!modalVisible);
-    // }, 1300);
+    if (name === "") {
+      Alert.alert("Please fill in all your details");
+      return;
+    }
+    setSignedUp(true);
+    setTimeout(() => {
+      //setModalVisible(!modalVisible);
+      setSignedUp(false);
+    }, 2500);
 
     setModalVisible(!modalVisible);
     const newUser = {
@@ -74,7 +78,6 @@ const SignUp = () => {
               <Text>Are You a club or a player?</Text>
               <View style={styles.checkboxBox}>
                 <CheckBox
-                  // center
                   title="Club"
                   checked={club}
                   onPress={() => {
@@ -82,7 +85,6 @@ const SignUp = () => {
                   }}
                 />
                 <CheckBox
-                  // center
                   title="Player"
                   checked={!club}
                   onPress={() => {
@@ -110,12 +112,6 @@ const SignUp = () => {
                   title={login}
                   onPress={handleSignUpPress}
                 />
-                {isPressed === true ? (
-                  <SignUpAlert
-                    text={"You have Signed Up!! Congratulations 👏"}
-                    setAlertMessage={setSignUpMessage}
-                  />
-                ) : null}
               </View>
             </View>
           </ScrollView>
@@ -123,6 +119,9 @@ const SignUp = () => {
       </Modal>
 
       <Button title={login} onPress={handlePress} />
+      {isSignedUp === true ? (
+        <PopUp text={"You have Signed Up 👏 Now log in to find a match!"} />
+      ) : null}
     </View>
   );
 };
