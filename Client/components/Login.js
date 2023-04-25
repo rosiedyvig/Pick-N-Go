@@ -15,6 +15,7 @@ import { findUser } from "../API";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { setClub } from "../redux/clubSlice";
+import { setUsername } from "../redux/usernameSlice";
 
 const ball = require("../assets/ball.png");
 
@@ -42,6 +43,7 @@ const Login = ({ navigation }) => {
     }
     //THIS IS REDUX
     dispatch(setClub(result.club));
+    dispatch(setUsername(result.name));
 
     if (result.club === true) {
       navigation.navigate("ClubMain");
