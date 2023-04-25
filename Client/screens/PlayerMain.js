@@ -1,14 +1,22 @@
 import React from "react";
 import { ImageBackground, StyleSheet, View, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import MatchList from "../components/MatchList";
-import MyMatches from "./MyMatches";
+import Button from "../components/Button";
+// import MyMatches from "./MyMatches";
 const grass = require("../assets/grass.avif");
 
 const PlayerMain = ({ setAlertMessage }) => {
+  const navigation = useNavigation();
   return (
     <>
       <ImageBackground source={grass} resizeMode="cover" style={styles.image}>
+        <Button
+          title="Fixtures"
+          onPress={() => navigation.navigate("MyMatches")}
+        />
+
         <MatchList setAlertMessage={setAlertMessage} />
       </ImageBackground>
     </>

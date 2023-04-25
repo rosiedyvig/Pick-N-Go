@@ -6,14 +6,7 @@ import PopUp from "./PopUp";
 import styles from "./Details.style";
 import { useSelector } from "react-redux";
 
-const Details = ({
-  item,
-  modalVisible,
-  setModalVisible,
-  setAlertMessage,
-  matchArr,
-  setMatches,
-}) => {
+const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
   const [isConfirmed, setConfirmed] = useState(false);
 
   const isClub = useSelector((s) => s.club);

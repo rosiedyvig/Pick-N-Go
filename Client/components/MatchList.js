@@ -1,7 +1,8 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { FlatList, StyleSheet, SafeAreaView } from "react-native";
-import MatchBox from "./MatchBox";
 import { getAll } from "../API";
+import { useSelector } from "react-redux";
+import MatchBox from "./MatchBox";
 import moment from "moment";
 
 const MatchList = ({ setAlertMessage }) => {
@@ -25,6 +26,8 @@ const MatchList = ({ setAlertMessage }) => {
     }, 800);
   }, []);
 
+  const isClub = useSelector((s) => s.club);
+
   const formattedFixtures = matchArr
     .filter((x) => moment(x.date).isAfter())
     .sort((a, b) => new Date(a.date) - new Date(b.date))
@@ -42,22 +45,43 @@ const MatchList = ({ setAlertMessage }) => {
       return formattedFixture;
     });
 
+  const oppositionArr = formattedFixtures.filter((x) => {
+    return x.looking_for == "Opposition";
+  });
+
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        data={formattedFixtures}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => (
-          <MatchBox
-            item={item}
-            setAlertMessage={setAlertMessage}
-            matchArr={matchArr}
-            setMatches={setMatches}
-          />
-        )}
-        refreshing={isRefreshing}
-        onRefresh={handleRefresh}
-      />
+      {isClub ? (
+        <FlatList
+          data={oppositionArr}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => (
+            <MatchBox
+              item={item}
+              setAlertMessage={setAlertMessage}
+              // matchArr={matchArr}
+              // setMatches={setMatches}
+            />
+          )}
+          refreshing={isRefreshing}
+          onRefresh={handleRefresh}
+        />
+      ) : (
+        <FlatList
+          data={formattedFixtures}
+          keyExtractor={(item) => item._id}
+          renderItem={({ item }) => (
+            <MatchBox
+              item={item}
+              setAlertMessage={setAlertMessage}
+              // matchArr={matchArr}
+              // setMatches={setMatches}
+            />
+          )}
+          refreshing={isRefreshing}
+          onRefresh={handleRefresh}
+        />
+      )}
     </SafeAreaView>
   );
 };

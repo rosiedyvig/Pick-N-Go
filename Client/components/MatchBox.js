@@ -4,7 +4,7 @@ import Details from "./Details";
 
 const team = require("../assets/teamwork.png");
 
-const MatchBox = ({ item, setAlertMessage, matchArr, setMatches }) => {
+const MatchBox = ({ item, setAlertMessage }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const handlePress = () => {
@@ -42,8 +42,8 @@ const MatchBox = ({ item, setAlertMessage, matchArr, setMatches }) => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         item={item}
-        matchArr={matchArr}
-        setMatches={setMatches}
+        // matchArr={matchArr}
+        // setMatches={setMatches}
       />
     </>
   );

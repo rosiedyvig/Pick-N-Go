@@ -9,6 +9,7 @@ import Home from "./screens/Home";
 import PlayerMain from "./screens/PlayerMain";
 import ClubMain from "./screens/ClubMain";
 import AddFixture from "./screens/AddFixture";
+import MyMatches from "./screens/MyMatches";
 
 import io from "socket.io-client";
 
@@ -48,6 +49,7 @@ export default function App() {
             {() => <PlayerMain setAlertMessage={setAlertMessage} />}
           </RootStack.Screen>
           <RootStack.Screen name="AddFixture" component={AddFixture} />
+          <RootStack.Screen name="MyMatches" component={MyMatches} />
         </RootStack.Navigator>
       </NavigationContainer>
     </Provider>

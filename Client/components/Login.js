@@ -11,7 +11,7 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { findUser } from "../API";
-import { ClubContext } from "../ClubContext";
+// import { ClubContext } from "../ClubContext";
 import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { setClub } from "../redux/clubSlice";
@@ -40,10 +40,11 @@ const Login = ({ navigation }) => {
       setName("");
       return;
     }
+    //THIS IS REDUX
     dispatch(setClub(result.club));
+
     if (result.club === true) {
       navigation.navigate("ClubMain");
-      <ClubContext.Provider value="true" />;
     }
     if (result.club === false) {
       navigation.navigate("PlayerMain");

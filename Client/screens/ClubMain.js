@@ -5,13 +5,10 @@ import Button from "../components/Button";
 
 import MatchList from "../components/MatchList";
 import SignUpAlert from "../components/SignUpAlert";
-import { ClubContext } from "../ClubContext";
 
 const grass = require("../assets/grass.avif");
 
 const ClubMain = ({ alertMessage, setAlertMessage }) => {
-  const value = React.useContext(ClubContext);
-
   const navigation = useNavigation();
   return (
     <>
