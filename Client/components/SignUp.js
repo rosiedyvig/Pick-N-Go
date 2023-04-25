@@ -14,12 +14,16 @@ import Button from "./Button";
 import PopUp from "./PopUp";
 import { CheckBox } from "@rneui/themed";
 import { postUser } from "../API";
+import { useSelector, useDispatch } from "react-redux";
+import { toggle, setClub } from "../redux/clubSlice";
 
 const ball = require("../assets/ball.png");
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
-  const [club, setisClub] = useState(true);
+
+  const club = useSelector((state) => state.club);
 
   const [isSignedUp, setSignedUp] = useState(false);
 
@@ -83,14 +87,14 @@ const SignUp = () => {
                     title="Club"
                     checked={club}
                     onPress={() => {
-                      setisClub(!club);
+                      dispatch(setClub(true));
                     }}
                   />
                   <CheckBox
                     title="Player"
                     checked={!club}
                     onPress={() => {
-                      setisClub(!club);
+                      dispatch(setClub(false));
                     }}
                   />
                 </View>

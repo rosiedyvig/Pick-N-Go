@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { store } from "./redux/store";
+import { Provider } from "react-redux";
 
 import Home from "./screens/Home";
 import PlayerMain from "./screens/PlayerMain";
@@ -30,23 +32,25 @@ export default function App() {
   }, []);
 
   return (
-    <NavigationContainer>
-      <RootStack.Navigator>
-        <RootStack.Screen name="Home" component={Home} />
-        <RootStack.Screen name="ClubMain">
-          {() => (
-            <ClubMain
-              alertMessage={alertMessage}
-              setAlertMessage={setAlertMessage}
-            />
-          )}
-        </RootStack.Screen>
-        <RootStack.Screen name="PlayerMain">
-          {() => <PlayerMain setAlertMessage={setAlertMessage} />}
-        </RootStack.Screen>
-        <RootStack.Screen name="AddFixture" component={AddFixture} />
-      </RootStack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <RootStack.Navigator>
+          <RootStack.Screen name="Home" component={Home} />
+          <RootStack.Screen name="ClubMain">
+            {() => (
+              <ClubMain
+                alertMessage={alertMessage}
+                setAlertMessage={setAlertMessage}
+              />
+            )}
+          </RootStack.Screen>
+          <RootStack.Screen name="PlayerMain">
+            {() => <PlayerMain setAlertMessage={setAlertMessage} />}
+          </RootStack.Screen>
+          <RootStack.Screen name="AddFixture" component={AddFixture} />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 

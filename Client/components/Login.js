@@ -11,7 +11,10 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import { findUser } from "../API";
+import { ClubContext } from "../ClubContext";
 import Button from "./Button";
+import { useDispatch } from "react-redux";
+import { setClub } from "../redux/clubSlice";
 
 const ball = require("../assets/ball.png");
 
@@ -19,7 +22,7 @@ const Login = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState("");
 
-  const [isClub, setClub] = useState(false);
+  const dispatch = useDispatch();
 
   const handlePress = () => {
     setModalVisible(!modalVisible);
@@ -37,8 +40,10 @@ const Login = ({ navigation }) => {
       setName("");
       return;
     }
+    dispatch(setClub(result.club));
     if (result.club === true) {
       navigation.navigate("ClubMain");
+      <ClubContext.Provider value="true" />;
     }
     if (result.club === false) {
       navigation.navigate("PlayerMain");

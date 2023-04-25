@@ -1,14 +1,17 @@
-import React from "react";
-import { StyleSheet, ImageBackground } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet, ImageBackground, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Button from "../components/Button";
 
 import MatchList from "../components/MatchList";
 import SignUpAlert from "../components/SignUpAlert";
+import { ClubContext } from "../ClubContext";
 
 const grass = require("../assets/grass.avif");
 
 const ClubMain = ({ alertMessage, setAlertMessage }) => {
+  const value = React.useContext(ClubContext);
+
   const navigation = useNavigation();
   return (
     <>
@@ -17,7 +20,6 @@ const ClubMain = ({ alertMessage, setAlertMessage }) => {
           title="Add a fixture"
           onPress={() => navigation.navigate("AddFixture")}
         />
-
         <MatchList />
       </ImageBackground>
       {alertMessage === true ? (

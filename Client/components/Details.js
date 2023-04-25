@@ -4,6 +4,7 @@ import Button from "./Button";
 import Map from "./Map";
 import PopUp from "./PopUp";
 import styles from "./Details.style";
+import { useSelector } from "react-redux";
 
 const Details = ({
   item,
@@ -14,6 +15,8 @@ const Details = ({
   setMatches,
 }) => {
   const [isConfirmed, setConfirmed] = useState(false);
+
+  const isClub = useSelector((s) => s.club);
 
   const handleSignUp = () => {
     console.log("where is my pop up?");
@@ -67,7 +70,9 @@ const Details = ({
               </Pressable>
             </View>
 
-            <Button title={"Sign Up"} onPress={handleSignUp}></Button>
+            {isClub ? null : (
+              <Button title={"Sign Up"} onPress={handleSignUp}></Button>
+            )}
           </View>
           {isConfirmed ? (
             <PopUp
