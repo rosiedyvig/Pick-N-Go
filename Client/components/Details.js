@@ -20,14 +20,16 @@ const Details = ({
     setAlertMessage(true);
     setConfirmed(true);
     //this should be deleted from the matchArr now using setMatches
-    // newArr = matchArr.filter((individual) => individual._id !== item._id);
     //re render the list
-    // setMatches(newArr);
     //delete from db is avalible if needed - deleteMatchfromDB
     //add the match to the MyMatches screen
     setTimeout(() => {
       setModalVisible(!modalVisible);
       setConfirmed(false);
+      // const newArr = matchArr.filter(
+      //   (individual) => individual._id !== item._id
+      // );
+      // setMatches(newArr);
     }, 2500);
   };
 

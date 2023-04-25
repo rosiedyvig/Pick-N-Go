@@ -9,7 +9,6 @@ const PlayerMain = ({ setAlertMessage }) => {
   return (
     <>
       <ImageBackground source={grass} resizeMode="cover" style={styles.image}>
-        <MyMatches></MyMatches>
         <MatchList setAlertMessage={setAlertMessage} />
       </ImageBackground>
     </>
@@ -17,9 +16,6 @@ const PlayerMain = ({ setAlertMessage }) => {
 };
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  // },
   image: {
     flex: 1,
     justifyContent: "center",

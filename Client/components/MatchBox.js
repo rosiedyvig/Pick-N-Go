@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     borderWidth: 9,
   },
   section: {
+    flexDirection: "column",
     flexWrap: "wrap",
     height: 80,
   },

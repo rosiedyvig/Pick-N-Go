@@ -19,6 +19,8 @@ const Login = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState("");
 
+  const [isClub, setClub] = useState(false);
+
   const handlePress = () => {
     setModalVisible(!modalVisible);
   };
