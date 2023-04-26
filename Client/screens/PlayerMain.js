@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 
 import MatchList from "../components/MatchList";
 import Button from "../components/Button";
-// import MyMatches from "./MyMatches";
 const grass = require("../assets/grass.avif");
 
 const PlayerMain = ({ setAlertMessage }) => {
@@ -13,7 +12,7 @@ const PlayerMain = ({ setAlertMessage }) => {
     <>
       <ImageBackground source={grass} resizeMode="cover" style={styles.image}>
         <Button
-          title="Fixtures"
+          title="Confirmed Fixtures"
           onPress={() => navigation.navigate("MyMatches")}
         />
 

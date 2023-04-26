@@ -29,25 +29,6 @@ const MatchList = ({ setAlertMessage }) => {
   const isClub = useSelector((s) => s.club);
   const isUserName = useSelector((s) => s.username);
 
-  const customFormatter = (arr) => {
-    arr
-      .filter((x) => moment(x.date).isAfter())
-      .sort((a, b) => new Date(a.date) - new Date(b.date))
-      .map((item) => {
-        const formateddate = moment(item.date).format("ddd Do MMM");
-        const formatedKickOff = moment(item.kick_off).format("h:mm a");
-        const formatedMeetUp = moment(item.meet_up).format("h:mm a");
-
-        const formattedFixture = {
-          ...item,
-          date: formateddate,
-          kick_off: formatedKickOff,
-          meet_up: formatedMeetUp,
-        };
-        return formattedFixture;
-      });
-  };
-
   const formattedFixtures = matchArr
     .filter((x) => moment(x.date).isAfter())
     .sort((a, b) => new Date(a.date) - new Date(b.date))

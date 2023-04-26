@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Text, View, Pressable, StyleSheet } from "react-native";
 
-const PopUp = ({ text }) => {
+const PopUp = ({ text, name }) => {
   const [alertVisible, setAlertVisible] = useState(true);
 
   return (

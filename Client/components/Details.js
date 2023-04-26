@@ -4,15 +4,19 @@ import Button from "./Button";
 import Map from "./Map";
 import PopUp from "./PopUp";
 import styles from "./Details.style";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { setConfirmedFixture } from "../redux/confirmedFixturesSlice";
 
 const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
   const [isConfirmed, setConfirmed] = useState(false);
 
   const isClub = useSelector((s) => s.club);
 
+  const dispatch = useDispatch();
+
   const handleSignUp = () => {
-    console.log("where is my pop up?");
+    dispatch(setConfirmedFixture(item));
     setAlertMessage(true);
     setConfirmed(true);
     //this should be deleted from the matchArr now using setMatches
@@ -26,6 +30,8 @@ const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
       //   (individual) => individual._id !== item._id
       // );
       // setMatches(newArr);
+
+      //send this item to myMatches
     }, 2500);
   };
 
@@ -72,6 +78,7 @@ const Details = ({ item, modalVisible, setModalVisible, setAlertMessage }) => {
               text={
                 "Confirmed! Now get your boots on, its time to save the day!"
               }
+              name={isUserName}
             ></PopUp>
           ) : null}
         </View>

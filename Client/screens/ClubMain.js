@@ -22,6 +22,7 @@ const ClubMain = ({ alertMessage, setAlertMessage }) => {
       {alertMessage === true ? (
         <SignUpAlert
           text={
+            // `${isUserName} has confirmed! 🏉 Yayyy - your game can go ahead!`
             "You Have a Player Confirmed! 🏉 Yayyy - your game can go ahead!"
           }
           setAlertMessage={setAlertMessage}
